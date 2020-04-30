@@ -9,15 +9,14 @@
 </head>
 
 <body>
-    <h1>{{ title }} Template is working!</h1>
+    <h1>{{ title }}</h1>
     <hr>
-    {% for obj in object_list %}
-    {{ obj.title }}<br />
-    {{ obj.content }}<br />
-    {{ obj.timestamp }}<br />
-    {{ obj.updated }}<br />
-    {{ obj.id }}<br />
-    {% endfor %}
+    {{ instance.title }}<br />
+    {{ instance.content }}<br />
+    {{ instance.timestamp }}<br />
+    {{ instance.updated }}<br />
+    {{ instance.id }}<br />
+
 </body>
 
 </html>
