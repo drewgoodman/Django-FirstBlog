@@ -4,11 +4,20 @@ from django.http import HttpResponse
 
 # Create your views here.
 from .models import Post
+from .forms import PostForm
 
 # Function based views vs class based views
 
 def post_create(request):
-    return HttpResponse("<h1>Create</h1>")
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        print(form.cleaned_data.get("title"))
+        instance.save()
+    context = {
+        "form" : form,
+    }
+    return render(request, "post_form.html", context)
 
 def post_detail(request, id=None):
     # instance = Post.objects.get(id=1)
