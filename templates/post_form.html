@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Blog Post</title>
-</head>
-
-<body>
+{% block content %}
+{{ block.super }}
     <h1>Form</h1>
     <hr>
     <form method="POST" action="">
@@ -16,7 +9,4 @@
     {{ form.as_p}}
     <input type="submit" value="Create Post">
     </form>
-
-</body>
-
-</html>
+{% endblock content %}
