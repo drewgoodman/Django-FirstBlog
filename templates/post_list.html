@@ -7,6 +7,9 @@
         {% for obj in object_list %}
         <div class="col-sm-12">
             <div class="thumbnail">
+                {% if obj.image %}
+                <img src="{{ obj.image.url }}" class="img-responsive"/>
+                {% endif %}
                 <div class="caption">
                     <h3><a href="{{obj.get_absolute_url}}">{{ obj.title }}
                             <small>{{ obj.timestamp|timesince }}</small></a></h3>
