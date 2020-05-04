@@ -15,10 +15,16 @@
     {% if instance.image %}
     <img src="{{ instance.image.url }}" class="img-responsive" />
     {% endif %}
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
-        Facebook
-    </a>
-    <a
+    <p><div class="fb-like" 
+        data-href="{{ request.build_absolute_uri }}"
+        data-width="" 
+        data-layout="standard" 
+        data-action="like" 
+        data-size="small" 
+        data-share="true"></div></p>
+    <hr/>
+
+    <!-- <a
         href="https://twitter.com/home?status={{ instance.content|truncatechars:80|urlify }}%20{{ request.build_absolute_uri }}">
         Twitter
     </a>
@@ -28,8 +34,11 @@
     </a>
     <a
         href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ instance.content|truncatechars:80|urlify }}">
-        Reddit</a>
-    <hr>
+        Reddit</a> -->
+
     {{ instance.content | linebreaks }}<br />
+    
+    <hr/>
+    <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5" data-width="100%"></div>
 </div>
 {% endblock content %}
