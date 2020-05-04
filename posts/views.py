@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
 
 from urllib.parse import quote_plus
 
@@ -33,6 +34,9 @@ def post_create(request):
 def post_detail(request, slug=None):
     # instance = Post.objects.get(id=1)
     instance = get_object_or_404(Post, slug=slug)
+    if instance.draft or instance.publish > timezone.now().date():
+        if not request.user.is_authenticated:
+            raise Http404
     share_string = quote_plus(instance.content)
     context = {
         "title" : instance.title,
@@ -43,14 +47,18 @@ def post_detail(request, slug=None):
 
 
 def post_list(request):
-    queryset_list = Post.objects.all()
-    paginator = Paginator(queryset_list, 10) # Show 10 posts per page.
-
+    today = timezone.now().date()
+    queryset_list = Post.objects.active()
+    # queryset_list = Post.objects.all()
+    if request.user.is_authenticated:
+        queryset_list = Post.objects.all()
+    paginator = Paginator(queryset_list, 2) # Show 10 posts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
         "object_list" : page_obj,
-        "title" : "Post List"
+        "title" : "Post List",
+        "today" : today
     }
     return render(request, "post_list.html", context)
 

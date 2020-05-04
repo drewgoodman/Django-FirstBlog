@@ -2,9 +2,16 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.text import slugify
 # Create your models here.
 # MVC MODEL VIEW CONTROLLER
+
+class PostManager(models.Manager):
+    #Post.objects.all() = super(postManager, self).all()
+    def active(self, *args, **kwargs):
+        return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
+
 
 def upload_location(instance, filename):
     return "blog/%s/%s" %(instance.id, filename)
@@ -24,8 +31,12 @@ class Post(models.Model):
     height_field = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)
     content = models.TextField()
+    draft = models.BooleanField(default=False)
+    publish = models.DateField(auto_now=False, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+    objects = PostManager()
 
     def __str__(self):
         return self.title
@@ -35,7 +46,7 @@ class Post(models.Model):
         # return "/posts/%s/" %(self.id)
     
     class Meta:
-        ordering = ["-timestamp","-updated"]
+        ordering = ["-publish","-timestamp","-updated"]
 
 # recursive function required since otherwise the Id will be = None when attempting to create a unique slug
 def create_slug(instance, new_slug=None):
