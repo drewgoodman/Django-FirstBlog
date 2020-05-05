@@ -24,9 +24,13 @@
         data-size="small" 
         data-share="true"></div></p>
     <hr/>
-    <div class="col-sm-12 content-markdown">{{ instance.content }}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="content-markdown post-detail-item">{{ instance.get_markdown }}
+            </div>
+            <hr/>
+            <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5" data-width="100%"></div>
+        </div>
     </div>
-    <hr/>
-    <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5" data-width="100%"></div>
 </div>
 {% endblock content %}

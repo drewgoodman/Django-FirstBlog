@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #third party
     'pagedown',
+    'markdown_deux',
 
     #local
     'posts',
