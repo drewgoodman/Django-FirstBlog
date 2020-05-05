@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from .models import Post
 
+
 class PostForm(forms.ModelForm):
     content = forms.CharField(widget=PagedownWidget)
     publish = forms.DateField(widget=forms.SelectDateWidget)
