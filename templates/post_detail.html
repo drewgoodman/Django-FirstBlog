@@ -15,6 +15,7 @@
     {% if instance.image %}
     <img src="{{ instance.image.url }}" class="img-responsive" />
     {% endif %}
+    
     <p><div class="fb-like" 
         data-href="{{ request.build_absolute_uri }}"
         data-width="" 
@@ -23,21 +24,8 @@
         data-size="small" 
         data-share="true"></div></p>
     <hr/>
-
-    <!-- <a
-        href="https://twitter.com/home?status={{ instance.content|truncatechars:80|urlify }}%20{{ request.build_absolute_uri }}">
-        Twitter
-    </a>
-    <a
-        href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&tite={{ instance.title }}&summary={{ instance.content|truncatechars:80|urlify }}&source={{ request.build_absolute_uri }}">
-        Linkedin
-    </a>
-    <a
-        href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ instance.content|truncatechars:80|urlify }}">
-        Reddit</a> -->
-
-    {{ instance.content | linebreaks }}<br />
-    
+    <div class="col-sm-12 content-markdown">{{ instance.content }}
+    </div>
     <hr/>
     <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5" data-width="100%"></div>
 </div>
