@@ -15,6 +15,8 @@
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{% static '/css/base.css' %}" />
+    
+    {% block head_extra %}{% endblock head_extra %}
 </head>
 
 
@@ -46,9 +48,7 @@
     $(document).ready(function() {
         $(".content-markdown").each(function(){
             var content = $(this).text();
-            console.log(content)
             var markedContent = marked(content);
-            console.log(markedContent)
             $(this).html(markedContent)
         })
     })
