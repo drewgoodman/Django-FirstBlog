@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -52,6 +53,14 @@ def post_list(request):
     # queryset_list = Post.objects.all()
     if request.user.is_authenticated:
         queryset_list = Post.objects.all()
+    query = request.GET.get("query")
+    if query:
+        queryset_list = queryset_list.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query) |
+            Q(user__first_name__icontains=query) |
+            Q(user__last_name__icontains=query)
+            ).distinct()
     paginator = Paginator(queryset_list, 2) # Show 10 posts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
