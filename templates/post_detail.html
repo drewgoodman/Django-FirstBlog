@@ -29,16 +29,14 @@
             <hr />
 
             <p class="lead">Comments</p>
-            <div>
+            <hr/>
                 {% for comment in comments %}
-                <div class="">
-                    {{ comment.user }} says "{{ comment.content }}"
-                    <br/>
-                    <small>{{ comment.timestamp|timesince}}</small>
-                    <hr/>
-                </div>
+                <blockquote>
+                    <p>{{ comment.content }}</p>
+                    <footer>from {{ comment.user }} | {{ comment.timestamp|timesince}}</footer>
+                </blockquote>
+                <hr/>
                 {% endfor %}
-            </div>
             <!-- <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5" data-width="100%"></div> -->
         </div>
     </div>

@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -42,9 +41,7 @@ def post_detail(request, slug=None):
         if not request.user.is_authenticated:
             raise Http404
     share_string = quote_plus(instance.content)
-    content_type = ContentType.objects.get_for_model(Post)
-    obj_id = instance.id
-    comments = Comment.objects.filter(content_type=content_type, object_id=obj_id)
+    comments = instance.comments
     context = {
         "title" : instance.title,
         "instance" : instance,
