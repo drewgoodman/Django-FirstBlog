@@ -49,6 +49,11 @@
     <script type="text/javascript">
     
     $(document).ready(function() {
+
+        $(".comment-reply-btn").click(function(event){
+            event.preventDefault();
+            $(this).parent().next(".comment-reply").fadeToggle();
+        })
  
         $(".content-markdown").each(function(){
             var content = $(this).text();
@@ -89,6 +94,8 @@
             var newContent = $(this).val();
                 setContent(newContent);
         })
+        
+
 
     })
 
