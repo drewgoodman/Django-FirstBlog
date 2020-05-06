@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -7,6 +8,7 @@ from django.utils import timezone
 from urllib.parse import quote_plus
 
 # Create your views here.
+from comments.forms import CommentForm
 from comments.models import Comment
 
 from .models import Post
@@ -24,7 +26,6 @@ def post_create(request):
         instance = form.save(commit=False)
         instance.user = request.user
         instance.content = instance.content.strip()
-        # print(form.cleaned_data.get("title"))
         instance.save()
         messages.success(request, "Successfully Created")
         return HttpResponseRedirect(instance.get_absolute_url())
@@ -41,12 +42,31 @@ def post_detail(request, slug=None):
         if not request.user.is_authenticated:
             raise Http404
     share_string = quote_plus(instance.content)
+    initial_data = {
+        "content_type": instance.get_content_type.model,
+        "object_id": instance.id,
+    }
+    form = CommentForm(request.POST or None, initial=initial_data)
+    if form.is_valid():
+        c_type = form.cleaned_data.get("content_type")
+        content_type = ContentType.objects.get(model=c_type)
+        obj_id = form.cleaned_data.get("object_id")
+        content_data = form.cleaned_data.get("content")
+        new_comment, created = Comment.objects.get_or_create(
+            user = request.user,
+            content_type = content_type,
+            object_id = obj_id,
+            content = content_data
+        )
+        if created:
+            print("Ya! It worked!")
     comments = instance.comments
     context = {
         "title" : instance.title,
         "instance" : instance,
         "share_string" : share_string,
         "comments" : comments,
+        "comment_form": form
     }
     return render(request, "post_detail.html", context)
 
