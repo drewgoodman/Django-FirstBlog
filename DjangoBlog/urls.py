@@ -19,7 +19,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-
+from accounts.views import (
+    login_view,
+    register_view,
+    logout_view)
 # from posts import views as post_view
 
 
@@ -27,6 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('comments/', include("comments.urls", namespace="comments")),
     path('posts/', include("posts.urls", namespace="posts")),
+    path('login/', login_view, name="login")
     # path('posts/<int:post_id>', "<appname>.views.<function_name>"),
 
 ]
