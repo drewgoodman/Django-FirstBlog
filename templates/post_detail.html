@@ -38,13 +38,14 @@
                 {% for comment in comments %}
                 <blockquote>
                     <p>{{ comment.content }}</p>
-                    <footer>from {{ comment.user }} | {{ comment.timestamp|timesince}}{% if comment.children.count > 0 %} | {{ comment.children.count}} comment{% if comment.children.count > 1 %}s{% endif %}{% endif %} | <a class="comment-reply-btn" href="#">Reply</a></footer>
+                    <footer>from {{ comment.user }} | {{ comment.timestamp|timesince}}{% if comment.children.count > 0 %} | {{ comment.children.count}} comment{% if comment.children.count > 1 %}s{% endif %}{% endif %} | <a
+                        class="comment-reply-btn" href="#">Reply</a> | <a href="{{comment.get_absolute_url}}">Thread</a></footer>
 
                     <div class="comment-reply">
                         {% for child_comment in comment.children %}
                         <blockquote>
                             <p>{{ child_comment.content }}</p>
-                            <footer>from {{ child_comment.user }} | {{ child_comment.timestamp|timesince}}</footer>
+                            <footer>from {{ child_comment.user }} | {{ child_comment.timestamp|timesince}}
                         </blockquote>
                         {% endfor %}
     
