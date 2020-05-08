@@ -45,7 +45,7 @@
                     <div class="comment-reply">
                         {% for child_comment in comment.children %}
                         <blockquote>
-                            <p>{{ child_comment.content }}</p>
+                            <p>#{{child_comment.id}} {{ child_comment.content }}</p>
                             <footer>from {{ child_comment.user }} | {{ child_comment.timestamp|timesince}}
                         </blockquote>
                         {% endfor %}
