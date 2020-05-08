@@ -11,8 +11,9 @@ from urllib.parse import quote_plus
 from comments.forms import CommentForm
 from comments.models import Comment
 
-from .models import Post
 from .forms import PostForm
+from .models import Post
+from .utils import get_read_time
 
 # Function based views vs class based views
 
