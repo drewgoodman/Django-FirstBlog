@@ -10,7 +10,6 @@ from .forms import CommentForm
 from .models import Comment
 
 def comment_delete(request, id):
-    obj = get_object_or_404(Comment, id=id)
     try:
         obj = Comment.objects.get(id=id)
     except:
@@ -32,7 +31,6 @@ def comment_delete(request, id):
     return render(request, "confirm_delete.html", context)
 
 def comment_thread(request, id):
-    obj = get_object_or_404(Comment, id=id)
     try:
         obj = Comment.objects.get(id=id)
     except:
@@ -40,6 +38,7 @@ def comment_thread(request, id):
     
     if not obj.is_parent:
         obj = obj.parent
+
     # print(dir(form))
     # print(form.errors)
     initial_data = {
