@@ -19,18 +19,18 @@ class CommentManager(models.Manager):
 
 
 class Comment(models.Model):
-    user        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
+    user            = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
 
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey('content_type', 'object_id')
+    content_type    = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id       = models.PositiveIntegerField()
+    content_object  = GenericForeignKey('content_type', 'object_id')
 
-    parent      = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
+    parent          = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
 
-    content     = models.TextField()
-    timestamp   = models.DateTimeField(auto_now_add=True)
+    content         = models.TextField()
+    timestamp       = models.DateTimeField(auto_now_add=True)
 
-    objects = CommentManager()
+    objects         = CommentManager()
 
     class Meta:
         ordering = ['-timestamp']
