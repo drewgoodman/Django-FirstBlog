@@ -30,7 +30,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('comments/', include("comments.urls", namespace="comments")),
     path('posts/', include("posts.urls", namespace="posts")),
-    path('login/', login_view, name="login")
+    path('login/', login_view, name="login"),
+    path('logout/', logout_view, name="logout")
     # path('posts/<int:post_id>', "<appname>.views.<function_name>"),
 
 ]
