@@ -1,7 +1,6 @@
 __pycache__
-db.sqlite3
-db2.sqlite3
-static/
+*.bak
+*.sqlite3
 static_cdn/
 media_cdn/
 migrations/

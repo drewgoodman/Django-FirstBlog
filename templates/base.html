@@ -41,6 +41,7 @@
             <li class="pull-right"><a href="{% url 'register' %}">Register</a></li>
             {% else %}
             <li class="pull-right"><a href="{% url 'logout' %}">Logout</a></li>
+            <li class="pull-right">Welcome, {{ request.user|title }}</li>
             {% endif %}
         </ol>
         {% block content %}

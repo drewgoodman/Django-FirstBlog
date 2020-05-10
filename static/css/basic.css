@@ -1,0 +1,17 @@
+.wmd-panel {
+    margin-left: 0 !important;
+    margin-right: 0;
+}
+
+#wmd-preview-id_content {
+    display: none;
+}
+
+.wmd-button-bar {
+    background-color: white !important;
+}
+
+.comment-reply {
+    display: none;
+}
+
