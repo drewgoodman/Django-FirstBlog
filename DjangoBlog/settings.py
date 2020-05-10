@@ -26,10 +26,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '^&8a@$$tksh7l8c=juifmcqy8ki69i
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = os.environ.get('DJANGO_DEBUG','') != 'False'
+# DEBUG = os.environ.get('DJANGO_DEBUG','') != 'False'
+DEBUG = False
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['drgood-blog.herokuapp.com']
 
 
 # Application definition
@@ -98,8 +99,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-db_from_env = dj_database_url.config(conn_max_age=500)
+
+db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
