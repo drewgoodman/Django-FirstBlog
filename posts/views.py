@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -17,13 +18,14 @@ from .utils import get_read_time
 
 # Function based views vs class based views
 
+@login_required
 def post_create(request):
     # if not request.user.is_staff or not request.user.is_superuser:
     #     raise Http404
     if not request.user.is_authenticated:
         raise Http404
     form = PostForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
+    if form.is_valid() and request.user.is_authenticated:
         instance = form.save(commit=False)
         instance.user = request.user
         instance.content = instance.content.strip()
@@ -106,7 +108,7 @@ def post_list(request):
     }
     return render(request, "post_list.html", context)
 
-
+@login_required
 def post_update(request, slug=None):
     if not request.user.is_authenticated:
         raise Http404
@@ -125,6 +127,7 @@ def post_update(request, slug=None):
     return render(request, "post_form.html", context)
 
 
+@login_required
 def post_delete(request, slug=None):
     if not request.user.is_authenticated:
         raise Http404
