@@ -32,7 +32,7 @@
             </div>
             <hr />
 
-            <p class="lead">Comments</p>
+            <p class="lead" id="comments">Comments</p>
             {% if request.user.is_authenticated %}
             <form method="POST" action="."> {% csrf_token %}
                 {{ comment_form|crispy }}
@@ -40,6 +40,7 @@
             </form>
             {% else %}
             <p>You must login to comment.</p>
+            <a href="{% url 'login' %}?next={{instance.get_absolute_url}}#comments">Click to login</a>
             {% endif %}
             <hr/>
                 {% for comment in comments %}
