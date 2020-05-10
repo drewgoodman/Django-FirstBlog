@@ -3,6 +3,5 @@ __pycache__
 *.bak
 *.sqlite3
 
-static_cdn/
 media_cdn/
 migrations/
