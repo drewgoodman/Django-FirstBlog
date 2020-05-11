@@ -14,6 +14,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import dj_database_url
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,12 +29,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '^&8a@$$tksh7l8c=juifmcqy8ki69i&x4c3dd%po)m#a9=-hwg')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-# DEBUG = os.environ.get('DJANGO_DEBUG','') != 'False'
 DEBUG = False
+# DEBUG = os.environ.get('DJANGO_DEBUG','') != 'False'
+
 
 
 ALLOWED_HOSTS = ['drgood-blog.herokuapp.com']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -47,6 +52,7 @@ INSTALLED_APPS = [
     'pagedown',
     'markdown_deux',
     'crispy_forms',
+    # 'storages',
 
     #local
     'comments',
@@ -142,12 +148,25 @@ USE_TZ = True
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+AWS_DEFAULT_ACL = None
+AWS_ACCESS_KEY_ID = os.environ.get('S3_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('S3_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, 'DjangoBlog/static'),
 ]
 
-STATIC_URL = '/static/'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+

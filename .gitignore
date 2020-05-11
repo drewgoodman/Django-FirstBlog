@@ -1,7 +1,11 @@
 __pycache__
 
+.env
+
 *.bak
 *.sqlite3
+
+settings_local.py
 
 media_cdn/
 # migrations/
