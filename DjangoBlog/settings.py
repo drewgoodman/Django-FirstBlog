@@ -150,6 +150,7 @@ USE_TZ = True
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
 AWS_HOST = "s3-us-west-2.amazonaws.com"
 AWS_ACCESS_KEY_ID = os.environ.get('S3_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('S3_SECRET_ACCESS_KEY')
