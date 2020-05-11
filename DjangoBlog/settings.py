@@ -173,7 +173,7 @@ STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 STATIC_ROOT = AWS_S3_CUSTOM_DOMAIN + "/static/"
 # STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 
-DEFAULT_FILE_STORAGE = 'mysite.storage_backends.MediaStorage'
+DEFAULT_FILE_STORAGE = 'DjangoBlog.storage_backends.MediaStorage'
 MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
 
