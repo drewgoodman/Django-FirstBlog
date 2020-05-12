@@ -5,8 +5,8 @@ __pycache__
 *.bak
 *.sqlite3
 
-settings_local.py
-
+DjangoBlog/settings/local.py
+static_cdn/
 media_cdn/
 # migrations/
 # !comments/migrations/__init__.py
