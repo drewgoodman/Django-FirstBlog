@@ -1,6 +1,14 @@
     
     $(document).ready(function() {
 
+        $("#search-bar-form").on("submit",function(event) {
+            event.preventDefault();
+            var search_query = $("#search-bar-query").val();
+            var search_href = search_query ? home_url + "?query=" + search_query : home_url;
+            window.location.replace(search_href);
+
+        })
+
         $(".comment-reply-btn").click(function(event){
             event.preventDefault();
             $(this).parent().next(".comment-reply").fadeToggle();

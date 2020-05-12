@@ -18,7 +18,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     {% block head_extra %}{% endblock head_extra %}
 
-    <link rel="stylesheet" href="{% static 'css/basic.css' %}" />
+    <!-- For production -->
+    <!-- <link rel="stylesheet" href="{% static 'css/basic.css' %}" /> -->
+    <!-- For local build-->
+    <link rel="stylesheet"
+        href="{% static 'css/basic.css' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
 
 </head>
 
@@ -28,7 +32,6 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
-
     <div class="container">
         <ol class='breadcrumb'>
             <li><a href="{% url 'posts:list' %}">Home</a></li>
@@ -43,6 +46,15 @@
             <li class="pull-right">Welcome, {{ request.user|title }}</li>
             {% endif %}
         </ol>
+        <form id="search-bar-form" method="GET" action="">
+            <div class="input-group">
+                <input id="search-bar-query" class="form-control" type="text" name="query" placeholder="Search Posts"
+                    value="{{ request.GET.query }}" />
+                <span class="input-group-btn">
+                    <button class='btn btn-default' type="submit"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
         {% include "messages_display.html" %}
         {% block content %}
         {% endblock content %}
@@ -57,7 +69,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.0.0/marked.min.js"></script>
 
-    <script src="{% static 'js/posts.js' %}"></script>
+    <script>
+        let home_url = "{% url 'posts:list' %}";
+    </script>
+
+    <script
+        src="{% static 'js/posts.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}"></script>
 </body>
 
 </html>
