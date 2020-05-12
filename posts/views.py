@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -24,7 +25,11 @@ def post_create(request):
     #     raise Http404
     if not request.user.is_authenticated:
         raise Http404
-    form = PostForm(request.POST or None, request.FILES or None)
+    current_date = date.today()
+    initial_data = {
+        "publish": current_date
+    }
+    form = PostForm(request.POST or None, request.FILES or None, initial=initial_data)
     if form.is_valid() and request.user.is_authenticated:
         instance = form.save(commit=False)
         instance.user = request.user
@@ -49,6 +54,7 @@ def post_detail(request, slug=None):
         "content_type": instance.get_content_type.model,
         "object_id": instance.id,
     }
+
     form = CommentForm(request.POST or None, initial=initial_data)
     if form.is_valid():
         c_type = form.cleaned_data.get("content_type")
