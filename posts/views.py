@@ -90,6 +90,15 @@ def post_detail(request, slug=None):
     }
     return render(request, "post_detail.html", context)
 
+def post_home(request):
+    today = timezone.now().date()
+    queryset_list = Post.objects.active()[:3]
+    context = {
+        "object_list" : queryset_list,
+        "title" : "Post List",
+        "today" : today
+    }
+    return render(request, "home.html", context)
 
 def post_list(request):
     today = timezone.now().date()

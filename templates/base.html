@@ -45,14 +45,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'posts:list' %}">The Good Blog</a>
+                <a class="navbar-brand" href="{% url 'posts:home' %}">The Good Blog</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">View Posts</a></li>
+                    <li><a href="{% url 'posts:home' %}">Home</a></li>
+                    <li><a href="{% url 'posts:list' %}">View Posts</a></li>
                     <li><a href="#">About</a></li>
                 </ul>
                 <form id="search-bar-form" method="GET" action="" class="navbar-form navbar-left">
@@ -92,7 +92,7 @@
 
     <div class="container">
         <ol class='breadcrumb'>
-            <li><a href="{% url 'posts:list' %}">Home</a></li>
+            <li><a href="{% url 'posts:home' %}">Home</a></li>
             {% block post_detail_link %}
             {% endblock %}
         </ol>

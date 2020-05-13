@@ -45,6 +45,7 @@ class Post(models.Model):
     content = models.TextField()
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)
+    
     tags = TaggableManager()
 
     read_time = models.IntegerField(default=0)

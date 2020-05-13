@@ -5,6 +5,7 @@
 {% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
 
 {% block post_detail_link %}
+<li><a href="{% url 'posts:list' %}">Posts</a></li>
 <li><a href="{{ object.content_object.get_absolute_url }}">{{ object.content_object.title }}</a></li>
 <li><a href="{{ object.get_absolute_url }}">Comment Thread</a></li>
 <li>Delete</li>

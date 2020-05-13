@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block post_detail_link %}
+<li><a href="{% url 'posts:list' %}">Posts</a></li>
+{% endblock %}
+
 {% block content %}
 <div class="col-sm-6 col-sm-offset-3">
     <h1>{{ title }}</h1>
