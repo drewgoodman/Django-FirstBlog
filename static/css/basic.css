@@ -11,9 +11,19 @@ body {
 
 /* Blog Markdown Text Editor Overrides */
 
+#div_id_publish > .controls {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
 .wmd-panel {
     margin-left: 0 !important;
     margin-right: 0;
+}
+
+.wmd-input {
+    width: 100% !important;
 }
 
 #wmd-preview-id_content {
@@ -22,6 +32,10 @@ body {
 
 .wmd-button-bar {
     background-color: white !important;
+}
+
+.bootstrap-tagsinput {
+    width: 100%;
 }
 
 .comment-reply {

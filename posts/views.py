@@ -35,6 +35,7 @@ def post_create(request):
         instance.user = request.user
         instance.content = instance.content.strip()
         instance.save()
+        form.save_m2m() # required to save tags
         messages.success(request, "Successfully Created")
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
@@ -123,6 +124,7 @@ def post_update(request, slug=None):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
+        form.save_m2m() # required to save tags
         messages.success(request, "<a href='#'>Item</a> Saved", extra_tags="html_safe")
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {

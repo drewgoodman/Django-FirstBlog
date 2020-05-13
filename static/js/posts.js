@@ -53,6 +53,8 @@
             var newContent = $(this).val();
                 setContent(newContent);
         })
+
+        $("#id_tags").attr('data-role', 'tagsinput');
         
 
 

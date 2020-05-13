@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #third party
+    'taggit',
     'pagedown',
     'markdown_deux',
     'crispy_forms',

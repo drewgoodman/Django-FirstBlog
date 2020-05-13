@@ -23,6 +23,7 @@
     <!-- For local build-->
     <link rel="stylesheet"
         href="{% static 'css/basic.css' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap-tagsinput.css' %}"/>
 
 </head>
 
@@ -115,6 +116,7 @@
 
     <script
         src="{% static 'js/posts.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}"></script>
+    <script src="{% static 'js/bootstrap-tagsinput.js' %}"></script>
 </body>
 
 </html>
