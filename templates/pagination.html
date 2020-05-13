@@ -1,0 +1,21 @@
+<nav aria-label="Page navigation">
+    <ul class="pager">
+        {% if object_list.has_previous %}
+            <li class="previous">
+                <a href="?page=1{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">&laquo; first</a>
+                <a href="?page={{ object_list.previous_page_number }}">previous</a>
+            </li>
+        {% endif %}
+
+        <!-- <span class="current">
+            <li class="page-number">Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}</li>
+        </span> -->
+
+        {% if object_list.has_next %}
+            <li class="next">
+                <a href="?page={{ object_list.paginator.num_pages }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">last &raquo;</a>
+                <a href="?page={{ object_list.next_page_number }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">next</a>
+            </li>
+        {% endif %}      
+    </ul>
+</nav>
