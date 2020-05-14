@@ -55,7 +55,10 @@
         })
 
         $("#id_tags").attr('data-role', 'tagsinput');
-        
 
+        // var imageUploader = $("#id_image");
+        // imageUploader.attr('name','file');
+        // imageUploader.addClass("dropzone")
+        // $("#id_image").dropzone({ url: "/file/post"});
 
     })

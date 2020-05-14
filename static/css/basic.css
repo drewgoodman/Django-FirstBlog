@@ -1,12 +1,19 @@
 
 body {
     padding-bottom: 10px;
-    /* padding-top: 70px; */
     background-color: #ccc;
 }
 
 .container {
     background-color: white;
+    padding: 0 !important;
+    margin-bottom: 30px;
+}
+
+.hero-img {
+    max-height: 300px;
+    width: 100%;
+    object-fit: cover;
 }
 
 /* Blog Markdown Text Editor Overrides */
