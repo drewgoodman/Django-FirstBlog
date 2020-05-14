@@ -34,6 +34,12 @@ def post_create(request):
         instance = form.save(commit=False)
         instance.user = request.user
         instance.content = instance.content.strip()
+        try:
+            blog_img = request.FILES['file']
+        except:
+            blog_img = None
+        if blog_img:
+            instance.image = blog_img
         instance.save()
         form.save_m2m() # required to save tags
         messages.success(request, "Successfully Created")
@@ -92,7 +98,8 @@ def post_detail(request, slug=None):
 
 def post_home(request):
     today = timezone.now().date()
-    queryset_list = Post.objects.active()[:3]
+    queryset_list = Post.objects.active_img()[:3]
+    print(queryset_list)
     context = {
         "object_list" : queryset_list,
         "title" : "Post List",
@@ -132,6 +139,12 @@ def post_update(request, slug=None):
     form = PostForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
         instance = form.save(commit=False)
+        try:
+            blog_img = request.FILES['file']
+        except:
+            blog_img = None
+        if blog_img:
+            instance.image = blog_img
         instance.save()
         form.save_m2m() # required to save tags
         messages.success(request, "<a href='#'>Item</a> Saved", extra_tags="html_safe")

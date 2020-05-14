@@ -21,6 +21,9 @@ class PostManager(models.Manager):
     #Post.objects.all() = super(postManager, self).all()
     def active(self, *args, **kwargs):
         return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
+    
+    def active_img(self, *args, **kwargs):
+        return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now()).exclude(image="")
 
 
 def upload_location(instance, filename):
