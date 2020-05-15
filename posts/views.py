@@ -12,6 +12,7 @@ from urllib.parse import quote_plus
 # Create your views here.
 from comments.forms import CommentForm
 from comments.models import Comment
+from taggit.models import Tag
 
 from .forms import PostForm
 from .models import Post
@@ -96,6 +97,7 @@ def post_detail(request, slug=None):
     }
     return render(request, "post_detail.html", context)
 
+
 def post_home(request):
     today = timezone.now().date()
     queryset_list = Post.objects.active_img()[:3]
@@ -106,21 +108,26 @@ def post_home(request):
     }
     return render(request, "home.html", context)
 
-def post_list(request):
+def post_list(request, slug=None):
     today = timezone.now().date()
-    queryset_list = Post.objects.active()
-    # queryset_list = Post.objects.all()
-    if request.user.is_authenticated:
-        queryset_list = Post.objects.all()
-    query = request.GET.get("query")
-    if query:
-        queryset_list = queryset_list.filter(
-            Q(title__icontains=query) |
-            Q(content__icontains=query) |
-            Q(user__first_name__icontains=query) |
-            Q(user__last_name__icontains=query) |
-            Q(tags__name__in=[query])
-            ).distinct()
+    if slug:
+        tag = get_object_or_404(Tag, slug=slug)
+        queryset_list = Post.objects.active().filter(tags=tag)
+        if request.user.is_authenticated:
+            queryset_list = Post.objects.all().filter(tags=tag)
+    else:
+        queryset_list = Post.objects.active()
+        if request.user.is_authenticated:
+            queryset_list = Post.objects.all()
+        query = request.GET.get("query")
+        if query:
+            queryset_list = queryset_list.filter(
+                Q(title__icontains=query) |
+                Q(content__icontains=query) |
+                Q(user__first_name__icontains=query) |
+                Q(user__last_name__icontains=query) |
+                Q(tags__name__in=[query])
+                ).distinct()
     paginator = Paginator(queryset_list, 10) # Show 10 posts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

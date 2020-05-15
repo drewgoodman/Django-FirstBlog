@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'posts',
 ]
 
+TAGGIT_CASE_INSENSITIVE = True
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE = [
@@ -82,6 +83,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'DjangoBlog.wsgi.application'
 
