@@ -27,10 +27,15 @@ body {
 .wmd-panel {
     margin-left: 0 !important;
     margin-right: 0;
+    width: 90% !important;
+}
+
+.wmd-wrapper {
+    width: 90%;
 }
 
 .wmd-input {
-    width: 100% !important;
+    max-width: 90% !important;
 }
 
 #wmd-preview-id_content {

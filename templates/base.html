@@ -18,9 +18,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     {% block head_extra %}{% endblock head_extra %}
 
-    <link rel="stylesheet" href="{% static 'css/dropzone/basic.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/dropzone/dropzone.css' %}" />
-
     <link rel="stylesheet" href="{% static 'css/bootstrap-tagsinput.css' %}" />
     <link rel="stylesheet"
         href="{% static 'css/basic.css' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
@@ -118,13 +115,10 @@
         let home_url = "{% url 'posts:list' %}";
     </script>
 
-<script src="{% static 'js/dropzone.js' %}"></script>
-<script src="{% static 'js/dropzone-amd-module.js' %}"></script>
-
-    
     <script
-        src="{% static 'js/posts.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}"></script>
-    
+        src="{% static 'js/posts.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}">
+    </script>
+
     <script src="{% static 'js/bootstrap-tagsinput.js' %}"></script>
 </body>
 
