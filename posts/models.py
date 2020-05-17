@@ -76,6 +76,17 @@ class Post(models.Model):
         return qs
 
     @property
+    def comment_count(self):
+        count = 0
+        instance = self
+        qs = Comment.objects.filter_by_instance(instance)
+        for comment in qs:
+            count += 1
+            child_qs = Comment.objects.filter(parent=comment)
+            count += len(child_qs)
+        return count
+
+    @property
     def get_content_type(self):
         instance = self
         content_type = ContentType.objects.get_for_model(instance.__class__)
