@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "__base.html" %}
 
-{% block post_detail_link %}
+{% block post_breadcrumb %}
 <li><a href="{% url 'posts:list' %}">Posts</a></li>
 {% endblock %}
 
@@ -8,7 +8,7 @@
 <div class="col-sm-6 col-sm-offset-3">
     <h1>{{ title }}</h1>
     <hr />
-    {% include "pagination.html" %}
+    {% include "_1_pagination.html" %}
     <div class="row">
         {% for obj in object_list %}
         <div class="col-sm-12">
@@ -34,6 +34,6 @@
         <!-- {% cycle "" "</div><div class='row'>" %} -->
         {% endfor %}
     </div>
-    {% include "pagination.html" %}
+    {% include "_1_pagination.html" %}
 </div>
 {% endblock content %}

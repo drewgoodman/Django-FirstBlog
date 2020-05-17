@@ -14,8 +14,7 @@ from taggit.managers import TaggableManager
 from comments.models import Comment
 
 from .utils import get_read_time
-# Create your models here.
-# MVC MODEL VIEW CONTROLLER
+
 
 class PostManager(models.Manager):
     #Post.objects.all() = super(postManager, self).all()
@@ -76,7 +75,7 @@ class Post(models.Model):
         return qs
 
     @property
-    def comment_count(self):
+    def comment_count(self): #includes all child comments in threads
         count = 0
         instance = self
         qs = Comment.objects.filter_by_instance(instance)
