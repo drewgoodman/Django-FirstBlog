@@ -1,0 +1,30 @@
+<form method="GET" action="" class="search-bar-form panel panel-default">
+    <div class="input-group panel-body">
+        <input class="search-bar-query form-control" type="text" name="query" placeholder="Search Posts"
+            value="{{ request.GET.query }}" />
+        <span class="input-group-btn">
+            <button class='btn btn-default' type="submit"><i class="fa fa-search"></i></button>
+            <span class="sr-only">Search Posts</span>
+        </span>
+    </div>
+</form>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Recent Articles</div>
+    <ul class="list-group">
+    {% for post in recent_posts %}
+    <li class="list-group-item"><a href="{{post.get_absolute_url}}">{{ post.title }}</a></li>
+    {% endfor %}
+    </ul>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Popular Tags</div>
+    <div class="panel-body">
+        <h4 class="h4">
+            {% for tag in tag_links %}
+            <a href="{% url 'posts:tag_view' tag.slug %}" class="label label-info">{{ tag|title }}</a>
+            {% endfor %}
+        </h4>
+    </div>
+</div>

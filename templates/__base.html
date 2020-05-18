@@ -19,6 +19,7 @@
     {% endblock head_extra %}
 
     <link rel="stylesheet" href="{% static 'css/bootstrap-tagsinput.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
     <link rel="stylesheet"
         href="{% static 'css/basic.css' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
 
@@ -35,18 +36,29 @@
     {% include "_1_navbar.html" %}
 
 
-    <div class="container">
         <img src="{% static 'img/background.jpg' %}" class="img-responsive hero-img">
-    </div>
     <div class="container">
-        <ol class='breadcrumb'>
-            <li><a href="{% url 'posts:home' %}">Home</a></li>
-            {% block post_breadcrumb %}
-            {% endblock %}
-        </ol>
-        {% include "_1_messages_display.html" %}
-        {% block content %}
-        {% endblock content %}
+
+
+
+        <div class="row">
+            <div class="col-md-8">
+                <ol class='breadcrumb'>
+                    <li><a href="{% url 'posts:home' %}">Home</a></li>
+                    {% block post_breadcrumb %}
+                    {% endblock %}
+                </ol>
+        
+                {% include "_1_messages_display.html" %}
+        
+                {% block content %}
+                {% endblock content %}
+            </div>
+            <div class="col-md-4">
+                {% include "_1_sidebar_right.html" %}
+            </div>
+        </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"

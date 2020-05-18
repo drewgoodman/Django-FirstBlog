@@ -2,8 +2,11 @@ from django.template import RequestContext, Template
 
 from .models import Post
 
-def tags_context(request):
-    tag_links = Post.tags.most_common()[:4]
+def sidebar_context(request):
+    
+    recent_posts = Post.objects.active()[:4]
+    tag_links = Post.tags.most_common()[:6]
     return {
-        'tag_links': tag_links
+        'recent_posts': recent_posts,
+        'tag_links': tag_links,
         }

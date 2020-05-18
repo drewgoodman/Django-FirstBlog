@@ -4,50 +4,17 @@ body {
     background-color: #ccc;
 }
 
-.container {
-    background-color: white;
-    padding: 0 !important;
-    margin-bottom: 30px;
+.navbar {
+    margin-bottom: 0px !important;
 }
+
+
 
 .hero-img {
-    max-height: 300px;
+    max-height: 200px;
     width: 100%;
     object-fit: cover;
-}
-
-/* Blog Markdown Text Editor Overrides */
-
-#div_id_publish > .controls {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-gap: 10px;
-}
-
-.wmd-panel {
-    margin-left: 0 !important;
-    margin-right: 0;
-    width: 90% !important;
-}
-
-.wmd-wrapper {
-    width: 90%;
-}
-
-.wmd-input {
-    max-width: 90% !important;
-}
-
-#wmd-preview-id_content {
-    display: none;
-}
-
-.wmd-button-bar {
-    background-color: white !important;
-}
-
-.bootstrap-tagsinput {
-    width: 100%;
+    margin-bottom: 30px;
 }
 
 .comment-reply {

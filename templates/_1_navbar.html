@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -29,9 +29,10 @@
                 </li>
                 <li><a href="#">About</a></li>
             </ul>
-            <form id="search-bar-form" method="GET" action="" class="navbar-form navbar-left">
+
+            <form method="GET" action="" class="search-bar-form navbar-form navbar-left">
                 <div class="input-group ">
-                    <input id="search-bar-query" class="form-control" type="text" name="query"
+                    <input class="search-bar-query form-control" type="text" name="query"
                         placeholder="Search Posts" value="{{ request.GET.query }}" />
                     <span class="input-group-btn">
                         <button class='btn btn-default' type="submit"><i class="fa fa-search"></i></button>

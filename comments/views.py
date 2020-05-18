@@ -32,7 +32,7 @@ def comment_delete(request, id):
     context = {
         "object": obj
     }
-    return render(request, "confirm_delete.html", context)
+    return render(request, "comment_delete.html", context)
 
 def comment_thread(request, id):
     try:
