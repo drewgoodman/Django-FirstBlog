@@ -10,7 +10,19 @@
 </form>
 
 <div class="panel panel-default">
-    <div class="panel-heading">Recent Articles</div>
+    <div class="panel-heading">
+        About Me
+    </div>
+    <div class="panel-body">
+        I'm a junior web developer currently living in Portland, Oregon. Currently experienced in using React.js, jQuery, Python, and now Django. This blog is just one of many projects I'm working on to improve my craft in my spare time.
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Recent Articles</a></li>
+        <li role="presentation"><a href="#">Popular Articles</a></li>
+    </div>
     <ul class="list-group">
     {% for post in recent_posts %}
     <li class="list-group-item"><a href="{{post.get_absolute_url}}">{{ post.title }}</a></li>
@@ -21,10 +33,21 @@
 <div class="panel panel-default">
     <div class="panel-heading">Popular Tags</div>
     <div class="panel-body">
-        <h4 class="h4">
+        <h4 class="row container-fluid">
             {% for tag in tag_links %}
             <a href="{% url 'posts:tag_view' tag.slug %}" class="label label-info">{{ tag|title }}</a>
             {% endfor %}
         </h4>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Archives</div>
+    <div class="panel-body">
+        <div class="row container-fluid">
+            <div class="list-group-item">2020 (4)</div>
+            <div class="list-group-item">2019 (4)</div>
+            <div class="list-group-item">2018 (5)</div>
+        </div>
     </div>
 </div>
