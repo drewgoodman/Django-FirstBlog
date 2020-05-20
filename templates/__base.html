@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block head_title %}My Django Blog{% endblock head_title %}</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -15,11 +16,9 @@
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    {% block head_extra %}
-    {% endblock head_extra %}
-
     <link rel="shortcut icon" type="image/png" href="{% static 'icon/favicon.ico' %}"/>
 
+    <!-- CUSTOM STYLE SHEETS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap-tagsinput.css' %}" />
     <link rel="stylesheet"
         href="{% static 'css/basic.css' %}
@@ -45,11 +44,14 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
-            /* filter: blur(1px); */
+            height: 120vh;
             z-index: -1;
         }
     </style>
+
+    {% block head_extra %}
+    {% endblock head_extra %}
+
 
 
 </head>
@@ -64,19 +66,20 @@
     {% include "_1_navbar.html" %}
     <div id="background-img"></div>
     <div class="container">
-
+        <img src="{% static 'img/hero.jpg'%}" class="hero-img card-shadow"/>
         <div class="row">
             <div class="col-md-8">
-                <ol class='breadcrumb'>
+                <ol class='breadcrumb card-shadow'>
                     <li><a href="{% url 'posts:home' %}">Home</a></li>
                     {% block post_breadcrumb %}
                     {% endblock %}
                 </ol>
+                <div class="content-container card-shadow">
+                    {% include "_1_messages_display.html" %}
 
-                {% include "_1_messages_display.html" %}
-
-                {% block content %}
-                {% endblock content %}
+                    {% block content %}
+                    {% endblock content %}
+                </div>
             </div>
             <div class="col-md-4">
                 {% include "_1_sidebar_right.html" %}

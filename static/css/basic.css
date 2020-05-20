@@ -7,15 +7,57 @@ body {
     margin-bottom: 0px !important;
 }
 
-
+.card-shadow {
+    -webkit-box-shadow: 5px 5px 12px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 12px -3px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 12px -3px rgba(0,0,0,0.75);
+}
 
 .hero-img {
     max-height: 200px;
     width: 100%;
     object-fit: cover;
+    margin-top: 50px;
     margin-bottom: 30px;
+    border-radius: 5px;
 }
 
 .comment-reply {
     display: none;
+}
+
+/* BOOTSTRAP OVERRIDES */
+
+.content-container {
+    background-color: #cfcfcf;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.breadcrumb {
+    background-color: #222021;
+    border: 1px solid #363436;
+    /* margin-left: -15px;
+    margin-right: -15px; */
+}
+
+.panel {
+    background-color: #222021;
+}
+
+.panel-default {
+    border-color: #424041;
+}
+
+.panel-heading {
+    background-color: #633637 !important;
+}
+
+a {
+    color: #424041;
+}
+
+a:hover {
+    color: #f0ece4;
+    text-decoration: none;
 }
