@@ -6,19 +6,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="{% static 'icon/favicon.ico' %}"/>
 
     <title>{% block head_title %}My Django Blog{% endblock head_title %}</title>
 
+    <!-- THIRD PARTY STYLES -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" type="image/png" href="{% static 'icon/favicon.ico' %}"/>
 
-    <!-- CUSTOM STYLE SHEETS -->
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
+
+
+    <!-- LOCAL STYLES -->
     <link rel="stylesheet" href="{% static 'css/bootstrap-tagsinput.css' %}" />
     <link rel="stylesheet"
         href="{% static 'css/basic.css' %}
@@ -31,15 +35,8 @@
     <style>
         #background-img {
             background-color: darkslategrey;
-            background-image: url("{% static 'img/background-1.jpeg' %}");            
-            background-size: cover;
-            -o-background-size:cover; 
-            -moz-background-size:cover; 
-            -webkit-background-size:cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-image: url("{% static 'img/background-1.jpeg' %}");          
             background-attachment: scroll;
-            
             position: fixed;
             top: 0;
             left: 0;
@@ -47,6 +44,13 @@
             height: 120vh;
             z-index: -1;
         }
+
+        .hero-img {
+            background-color: black;
+            background-image: url("{% static 'img/hero.jpg' %}");
+            background-size: cover;
+        }
+
     </style>
 
     {% block head_extra %}
@@ -64,9 +68,14 @@
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
     {% include "_1_navbar.html" %}
-    <div id="background-img"></div>
+    <div id="background-img" class="img-cover"></div>
     <div class="container">
-        <img src="{% static 'img/hero.jpg'%}" class="hero-img card-shadow"/>
+        <div class="hero-img img-cover card-shadow">
+            <div class="hero-shader"></div>
+            <img src="{% static 'img/icon.png' %}" class="hero-icon" alt="icon" />
+            <div class="hero-title">The Good Blog</div>
+        </div>
+        <!-- <img src="{% static 'img/hero.jpg'%}" class="hero-img card-shadow"/> -->
         <div class="row">
             <div class="col-md-8">
                 <ol class='breadcrumb card-shadow'>

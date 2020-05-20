@@ -13,13 +13,55 @@ body {
     box-shadow: 5px 5px 12px -3px rgba(0,0,0,0.75);
 }
 
+.img-cover {
+    background-size: cover;
+    -o-background-size:cover; 
+    -moz-background-size:cover; 
+    -webkit-background-size:cover;  
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .hero-img {
-    max-height: 200px;
+    height: 120px;
     width: 100%;
-    object-fit: cover;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 80px;
     border-radius: 5px;
+    position: relative;
+}
+
+.hero-icon {
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    bottom: -45px;
+    left: -15px;
+}
+
+.hero-shader {
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.hero-title {
+    font-family: 'Qwigley', cursive;
+    color: white;
+    font-size: 7em;
+    position: absolute;
+    bottom: 0;
+    left: 140px;
+    /* padding-bottom: 10px; */
+    text-shadow: 4px 3px 2px rgba(0,0,0,0.8);
+    transform: translateY(50px);
+    z-index: 2;
+
 }
 
 .comment-reply {
@@ -27,6 +69,12 @@ body {
 }
 
 /* BOOTSTRAP OVERRIDES */
+
+.brand-font {
+    font-family: 'Qwigley', cursive;
+    color: white;
+    font-size: 2.2em;
+}
 
 .content-container {
     background-color: #cfcfcf;
