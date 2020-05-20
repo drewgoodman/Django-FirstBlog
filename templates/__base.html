@@ -68,6 +68,7 @@
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 
     {% include "_1_navbar.html" %}
+    <div id="scroll-to-top"><i class="fas fa-arrow-up"></i></div>
     <div id="background-img" class="img-cover"></div>
     <div class="container">
         <div class="hero-img img-cover card-shadow">
@@ -83,7 +84,7 @@
                     {% block post_breadcrumb %}
                     {% endblock %}
                 </ol>
-                <div class="content-container card-shadow">
+                <div class="content-container">
                     {% include "_1_messages_display.html" %}
 
                     {% block content %}
@@ -106,6 +107,8 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 
+    <script src="https://kit.fontawesome.com/d58eb19ed0.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.0.0/marked.min.js"></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -115,8 +118,8 @@
         let home_url = "{% url 'posts:list' %}";
     </script>
 
-    <script src="{% static 'js/posts.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}">
-    </script>
+    <script src="{% static 'js/posts.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}"></script>
+    <script src="{% static 'js/nav.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}"></script>
 
     <script src="{% static 'js/bootstrap-tagsinput.js' %}"></script>
 </body>
