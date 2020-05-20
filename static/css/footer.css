@@ -1,0 +1,12 @@
+#page-footer {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+    background-color: #333;
+    color: #ccc;
+}
+
+#page-footer a:hover {
+    text-decoration: none;
+}
