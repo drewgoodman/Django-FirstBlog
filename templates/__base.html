@@ -23,6 +23,15 @@
     <link rel="stylesheet"
         href="{% static 'css/basic.css' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
 
+    <style>
+        body {
+            background-image: url("{% static 'img/background.jpg' %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
+
 
 </head>
 
@@ -36,7 +45,7 @@
     {% include "_1_navbar.html" %}
 
 
-        <img src="{% static 'img/background.jpg' %}" class="img-responsive hero-img">
+        <!-- <img src="{% static 'img/background.jpg' %}" class="img-responsive hero-img"> -->
     <div class="container">
 
 

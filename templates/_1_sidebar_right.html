@@ -1,3 +1,5 @@
+{% load static %}
+
 <form method="GET" action="" class="search-bar-form panel panel-default">
     <div class="input-group panel-body">
         <input class="search-bar-query form-control" type="text" name="query" placeholder="Search Posts"
@@ -14,7 +16,11 @@
         About Me
     </div>
     <div class="panel-body">
-        I'm a junior web developer currently living in Portland, Oregon. Currently experienced in using React.js, jQuery, Python, and now Django. This blog is just one of many projects I'm working on to improve my craft in my spare time.
+        <img class="img-responsive img-thumbnail" src="{% static 'img/profile.jpg' %}" alt="profile"/>
+        <hr/>
+        <div class="well">
+            I'm a junior web developer currently living in Portland, Oregon. Currently experienced in using React.js, jQuery, Python, and now Django. This blog is just one of many projects I'm working on to improve my craft in my spare time.
+        </div>
     </div>
 </div>
 
