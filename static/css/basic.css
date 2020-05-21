@@ -3,10 +3,6 @@ body {
     overflow-x: hidden;
 }
 
-.navbar {
-    margin-bottom: 0px !important;
-}
-
 .card-shadow {
     -webkit-box-shadow: 5px 5px 12px -3px rgba(0,0,0,0.75);
     -moz-box-shadow: 5px 5px 12px -3px rgba(0,0,0,0.75);
@@ -29,6 +25,9 @@ body {
     margin-bottom: 80px;
     border-radius: 5px;
     position: relative;
+    -webkit-box-shadow: 3px 10px 16px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 10px 16px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 10px 16px 0px rgba(0,0,0,0.75);
 }
 
 .hero-icon {
@@ -87,25 +86,7 @@ body {
     }
 }
 
-.comment-reply {
-    display: none;
-}
 
-#scroll-to-top {
-    position: fixed;
-    bottom: 35px;
-    right: 30px;
-    display: none;
-    font-size: 2em;
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    text-align: center;
-    cursor: pointer;
-    background-color: #333;
-    z-index: 4;
-}
 
 /* BOOTSTRAP OVERRIDES */
 
@@ -115,16 +96,10 @@ body {
     font-size: 2.2em;
 }
 
-.content-container:before {
-
-}
-
 .content-container {
     /* background-color: rgba(255,255,255,0.5); */
     padding: 15px;
     border-radius: 4px;
-    /* background: inherit; */
-    /* backdrop-filter: blur(5px); */
 }
 
 
@@ -136,7 +111,7 @@ body {
 }
 
 .panel {
-    background-color: #222021;
+    background-color: #8F7870
 }
 
 .panel-default {
@@ -144,7 +119,14 @@ body {
 }
 
 .panel-heading {
-    background-color: #633637 !important;
+    background-color: #222021 !important;
+    background-image: none !important;
+    border-color: transparent !important;
+    color: #F0ECE4 !important;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.3em;
+    text-align: right;
 }
 
 a {
@@ -155,3 +137,4 @@ a:hover {
     color: #f0ece4;
     text-decoration: none;
 }
+

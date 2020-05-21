@@ -1,0 +1,36 @@
+.navbar {
+    margin-bottom: 0px !important;
+}
+
+
+#scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    font-size: 2em;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #333;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    -webkit-box-shadow: 6px 9px 17px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 9px 17px 0px rgba(0,0,0,0.75);
+    box-shadow: 6px 9px 17px 0px rgba(0,0,0,0.75);
+}
+
+@media only screen and (max-width: 768) {
+    #scroll-to-top {
+        font-size: 1.8em;
+        width: 40px;
+        height: 40px;
+        bottom: 10px;
+        right: 10px;
+    }
+}

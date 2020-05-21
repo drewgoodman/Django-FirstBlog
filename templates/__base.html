@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="{% static 'icon/favicon.ico' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'icon/favicon.ico' %}" />
 
     <title>{% block head_title %}The Good Blog{% endblock head_title %}</title>
 
@@ -24,18 +24,22 @@
 
     <!-- LOCAL STYLES -->
     <link rel="stylesheet" href="{% static 'css/bootstrap-tagsinput.css' %}" />
-    <link rel="stylesheet"
-        href="{% static 'css/basic.css' %}
+    <link rel="stylesheet" href="{% static 'css/basic.css' %}
         {% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
     <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
-    <link rel="stylesheet"
-        href="{% static 'css/footer.css' %}
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}
+        {% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
+    <link rel="stylesheet" href="{% static 'css/post_list.css' %}
+        {% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
+    <link rel="stylesheet" href="{% static 'css/post_detail.css' %}
+        {% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}
         {% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
 
     <style>
         #background-img {
             background-color: darkslategrey;
-            background-image: url("{% static 'img/background-1.jpeg' %}");          
+            background-image: url("{% static 'img/background-1.jpeg' %}");
             background-attachment: scroll;
             position: fixed;
             top: 0;
@@ -50,7 +54,6 @@
             background-image: url("{% static 'img/hero.jpg' %}");
             background-size: cover;
         }
-
     </style>
 
     {% block head_extra %}
@@ -71,7 +74,7 @@
     <div id="scroll-to-top"><i class="fas fa-arrow-up"></i></div>
     <div id="background-img" class="img-cover"></div>
     <div class="container">
-        <div class="hero-img img-cover card-shadow">
+        <div class="hero-img img-cover">
             <div class="hero-shader"></div>
             <img src="{% static 'img/icon.png' %}" class="hero-icon" alt="icon" />
             <div class="hero-title">The Good Blog</div>
@@ -118,8 +121,10 @@
         let home_url = "{% url 'posts:list' %}";
     </script>
 
-    <script src="{% static 'js/posts.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}"></script>
-    <script src="{% static 'js/nav.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}"></script>
+    <script
+        src="{% static 'js/posts.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}"></script>
+    <script
+        src="{% static 'js/nav.js' %}{% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}"></script>
 
     <script src="{% static 'js/bootstrap-tagsinput.js' %}"></script>
 </body>

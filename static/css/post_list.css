@@ -1,0 +1,6 @@
+.thumbnail {
+    background-color: rgba(255,255,255,0.5);
+    /* background: inherit; */
+    backdrop-filter: blur(7px);
+    border: none;
+}
