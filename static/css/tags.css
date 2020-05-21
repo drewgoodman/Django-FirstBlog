@@ -17,6 +17,10 @@
     -moz-border-radius-topright: 4px;
     -webkit-border-top-right-radius: 4px;
     border-top-right-radius: 4px;
+    -webkit-box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.41);
+-moz-box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.41);
+box-shadow: 4px 6px 5px 0px rgba(0,0,0,0.41);
+
 }
 
 .post-tag a:before {

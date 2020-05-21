@@ -25,12 +25,12 @@
     box-shadow: 6px 9px 17px 0px rgba(0,0,0,0.75);
 }
 
-@media only screen and (max-width: 768) {
+@media only screen and (max-width: 768px) {
     #scroll-to-top {
         font-size: 1.8em;
         width: 40px;
         height: 40px;
-        bottom: 10px;
+        bottom: 15px;
         right: 10px;
     }
 }

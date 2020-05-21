@@ -120,7 +120,8 @@ body {
 }
 
 .panel {
-    background-color: #8F7870
+    background-color: rgba(0,0,0,0.2) !important;
+    /* background-color: #8F7870; */
 }
 
 .panel-default {
