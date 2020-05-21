@@ -16,8 +16,8 @@
         About Me
     </div>
     <div class="panel-body">
-        <img class="img-responsive img-thumbnail" src="{% static 'img/profile.jpg' %}" alt="profile"/>
-        <hr/>
+        <img class="img-responsive img-thumbnail" src="{% static 'img/profile.jpg' %}" alt="profile" />
+        <hr />
         <div class="well">
             Site is still a work in progress. Please check back later!
         </div>
@@ -29,20 +29,22 @@
         Recent Articles
     </div>
     <ul class="list-group">
-    {% for post in recent_posts %}
-    <li class="list-group-item"><a href="{{post.get_absolute_url}}">{{ post.title }}</a></li>
-    {% endfor %}
+        {% for post in recent_posts %}
+        <li class="list-group-item"><a href="{{post.get_absolute_url}}">{{ post.title }}</a></li>
+        {% endfor %}
     </ul>
 </div>
 
 <div class="panel panel-default card-shadow">
     <div class="panel-heading">Popular Tags</div>
     <div class="panel-body">
-        <h4 class="row container-fluid">
+        <div class="post-tag__container">
             {% for tag in tag_links %}
-            <a href="{% url 'posts:tag_view' tag.slug %}" class="label label-info">{{ tag|title }}</a>
+            <div class="post-tag">
+                <a href="{% url 'posts:tag_view' tag.slug %}">{{ tag|title }}</a>
+            </div>
             {% endfor %}
-        </h4>
+        </div>
     </div>
 </div>
 

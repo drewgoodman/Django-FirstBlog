@@ -135,7 +135,7 @@ body {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 1.3em;
-    text-align: right;
+    /* text-align: right; */
 }
 
 .page-heading {
