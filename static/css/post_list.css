@@ -4,3 +4,13 @@
     backdrop-filter: blur(7px);
     border: none;
 }
+
+.pager li>a {
+    background-color: #222021;
+    border-color: #363436;
+    color: #D5CFCF;
+}
+
+.pager li>a:hover {
+    color: #373736;
+}

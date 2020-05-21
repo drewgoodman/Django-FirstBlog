@@ -110,6 +110,14 @@ body {
     margin-right: -15px; */
 }
 
+.breadcrumb li>a {
+    color: #D5CFCF;
+}
+
+.breadcrumb li>a:hover {
+    color: #656E68;
+}
+
 .panel {
     background-color: #8F7870
 }
@@ -129,6 +137,13 @@ body {
     text-align: right;
 }
 
+.page-heading {
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 4px;
+    padding: 10px;
+    backdrop-filter: blur(7px);
+}
+
 a {
     color: #424041;
 }
@@ -137,4 +152,3 @@ a:hover {
     color: #f0ece4;
     text-decoration: none;
 }
-

@@ -8,6 +8,19 @@
     color: #ccc;
 }
 
+#page-footer a {
+    color: #96A29F;
+}
+
 #page-footer a:hover {
     text-decoration: none;
+    color: white;
+}
+
+@media only screen and (max-width: 768) {
+
+    #page-footer {
+        justify-content: flex-start;
+    }
+
 }
