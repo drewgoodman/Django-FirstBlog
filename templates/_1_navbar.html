@@ -29,8 +29,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'posts:list' %}">View all</a></li>
                         <li role="separator" class="divider"></li>
-                        {% for tag in tag_links %}
-                        <li><a href="{% url 'posts:tag_view' tag.slug %}">By Tag: {{ tag|title }}</a></li>
+                        {% for category in categories %}
+                        <li><a href="{% url 'posts:category_view' category.slug %}">By Category: {{ category.name|title }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>

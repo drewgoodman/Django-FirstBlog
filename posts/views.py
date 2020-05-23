@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.views import View
 from urllib.parse import quote_plus
 
 # Create your views here.
@@ -107,6 +108,39 @@ def post_home(request):
         "today" : today
     }
     return render(request, "home.html", context)
+
+class PostListView(View):
+
+    def get(self, request):
+        today = timezone.now().date()
+        if slug:
+            tag = get_object_or_404(Tag, slug=slug)
+            queryset_list = Post.objects.active().filter(tags=tag)
+            if request.user.is_authenticated:
+                queryset_list = Post.objects.all().filter(tags=tag)
+        else:
+            queryset_list = Post.objects.active()
+            if request.user.is_authenticated:
+                queryset_list = Post.objects.all()
+            query = request.GET.get("query")
+            if query:
+                queryset_list = queryset_list.filter(
+                    Q(title__icontains=query) |
+                    Q(content__icontains=query) |
+                    Q(user__first_name__icontains=query) |
+                    Q(user__last_name__icontains=query) |
+                    Q(tags__name__in=[query])
+                    ).distinct()
+        paginator = Paginator(queryset_list, 10) # Show 10 posts per page.
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            "object_list" : page_obj,
+            "title" : "Post List",
+            "today" : today
+        }
+        return render(request, "post_list.html", context)
+
 
 def post_list(request, slug=None):
     today = timezone.now().date()
