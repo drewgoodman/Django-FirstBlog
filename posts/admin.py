@@ -3,7 +3,7 @@ from django.utils.translation import ngettext
 
 # Register your models here.
 # from posts.models import Post
-from .models import Post #relative import
+from .models import Archive, Category, Post #relative import
 
 class PostModelAdmin(admin.ModelAdmin):
 
@@ -36,5 +36,18 @@ class PostModelAdmin(admin.ModelAdmin):
         ) % updated, messages.SUCCESS)
     make_draft.short_description = "Mark as Draft"
 
+
+class CategoryModelAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+
+    class Meta:
+        model = Category
+
+class ArchiveModelAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Archive
+
 admin.site.register(Post, PostModelAdmin)
+admin.site.register(Category, CategoryModelAdmin)
+admin.site.register(Archive, ArchiveModelAdmin)
 

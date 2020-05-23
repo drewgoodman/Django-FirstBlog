@@ -12,29 +12,9 @@ from markdown_deux import markdown
 from taggit.managers import TaggableManager
 
 from comments.models import Comment
+from posts.utils import get_read_time
 
-from .utils import get_read_time
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=80)
-
-    def __str__(self):
-        return self.name
-    
-    @property
-    def get_posts(self):
-        instance = self
-        qs = Post.objects.filter_by_instance(instance)
-        return qs
-
-    @property
-    def get_post_count(self):
-        count = 0
-        instance = self
-        count = len(Post.objects.filter_by_instance(instance))
-        return count
-
+from .category import Category
 
 
 class PostManager(models.Manager):
