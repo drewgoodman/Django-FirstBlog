@@ -14,6 +14,7 @@ from taggit.managers import TaggableManager
 from comments.models import Comment
 from posts.utils import get_read_time
 
+from .archive import Archive
 from .category import Category
 
 
@@ -48,7 +49,9 @@ class Post(models.Model):
     content = models.TextField()
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)
+    archive = models.ForeignKey(Archive, on_delete=models.PROTECT, null=True, blank=True)
     
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     tags = TaggableManager(blank=True)
 
     read_time = models.IntegerField(default=0)
