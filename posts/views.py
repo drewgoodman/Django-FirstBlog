@@ -16,7 +16,7 @@ from comments.models import Comment
 from taggit.models import Tag
 
 from .forms import PostForm
-from .models import Post
+from .models import Post, Category
 from .utils import get_read_time
 
 # Function based views vs class based views
@@ -163,7 +163,12 @@ class PostTagView(PostListView):
     title = "Filter By Tag: " 
 
 class PostCategoryView(PostListView):
-    title = "Filter By Category: " 
+    title = "Filter By Category: "
+
+    def filter_by_slug(self, queryset_list, slug):
+        category = get_object_or_404(Category, slug=slug)
+        filtered_queryset = queryset_list.filter(category=category)
+        return filtered_queryset
 
 
 
