@@ -203,6 +203,7 @@ def post_create(request):
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
         "form" : form,
+        "full_column" : True,
     }
     return render(request, "post_form.html", context)
 
@@ -234,6 +235,7 @@ def post_update(request, slug=None):
         "title" : instance.title,
         "instance" : instance,
         "form": form,
+        "full_column" : True,
     }
     return render(request, "post_form.html", context)
 

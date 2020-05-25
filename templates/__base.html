@@ -36,7 +36,8 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap-tagsinput.css' %}" />
     <link rel="stylesheet" href="{% static 'css/basic.css' %}
         {% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
-    <link rel="stylesheet" href="{% static 'css/forms.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}
+        {% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
     <link rel="stylesheet" href="{% static 'css/nav.css' %}
         {% if request.get_host == '127.0.0.1:8000' %}?{% now 'U' %}{% endif %}" />
     <link rel="stylesheet" href="{% static 'css/tags.css' %}
@@ -93,7 +94,11 @@
         </div>
         <!-- <img src="{% static 'img/hero.jpg'%}" class="hero-img card-shadow"/> -->
         <div class="row">
+            {% if full_column %}
+            <div class="">
+            {% else %}
             <div class="col-md-8">
+            {% endif %}
                 <ol class='breadcrumb card-shadow'>
                     <li><a href="{% url 'posts:home' %}">Home</a></li>
                     {% block post_breadcrumb %}
@@ -106,9 +111,11 @@
                     {% endblock content %}
                 </div>
             </div>
-            <div class="col-md-4">
-                {% include "_1_sidebar_right.html" %}
-            </div>
+            {% block right_sidebar %}
+                <div class="col-md-4">
+                    {% include "_1_sidebar_right.html" %}
+                </div>
+            {% endblock %}
         </div>
 
     </div>

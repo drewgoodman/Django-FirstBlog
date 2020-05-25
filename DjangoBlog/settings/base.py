@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     #third party
     'taggit',
-    'pagedown',
+    'pagedown.apps.PagedownConfig',
     'markdown_deux',
     'crispy_forms',
     # 'storages',

@@ -9,15 +9,21 @@
 .wmd-panel {
     margin-left: 0 !important;
     margin-right: 0;
-    width: 90% !important;
+    min-width: 100% !important;
 }
 
-.wmd-wrapper {
-    width: 90%;
+#wmd-button-row-id_content{
+    width: 100%;
+    height: auto;
+    padding-top: 5px !important;
 }
 
-.wmd-input {
-    max-width: 90% !important;
+.wmd-button, .wmd-spacer {
+    position: initial !important;
+}
+
+#wmd-input-id_content {
+    width: 100%;
 }
 
 #wmd-preview-id_content {
