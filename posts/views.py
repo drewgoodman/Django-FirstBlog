@@ -19,37 +19,94 @@ from .forms import PostForm
 from .models import Post, Category
 from .utils import get_read_time
 
-# Function based views vs class based views
 
-@login_required
-def post_create(request):
-    # if not request.user.is_staff or not request.user.is_superuser:
-    #     raise Http404
-    if not request.user.is_authenticated:
-        raise Http404
-    current_date = date.today()
-    initial_data = {
-        "publish": current_date
-    }
-    form = PostForm(request.POST or None, request.FILES or None, initial=initial_data)
-    if form.is_valid() and request.user.is_authenticated:
-        instance = form.save(commit=False)
-        instance.user = request.user
-        instance.content = instance.content.strip()
-        try:
-            blog_img = request.FILES['file']
-        except:
-            blog_img = None
-        if blog_img:
-            instance.image = blog_img
-        instance.save()
-        form.save_m2m() # required to save tags
-        messages.success(request, "Successfully Created")
-        return HttpResponseRedirect(instance.get_absolute_url())
+
+def post_home(request):
+    today = timezone.now().date()
+    queryset_list = Post.objects.active_img()[:3]
     context = {
-        "form" : form,
+        "object_list" : queryset_list,
+        "title" : "Post List",
+        "today" : today
     }
-    return render(request, "post_form.html", context)
+    return render(request, "home.html", context)
+
+
+class PostListView(View):
+    
+    title = "Post List"
+
+    def update_title(self, queryset, title_base, filter_name):
+        count = len(queryset)
+        if count == 1:
+            results_str = "result"
+        else:
+            results_str = "results"
+        self.title = "%s: %s -- (%s %s)" % (title_base, filter_name, count, results_str)
+
+    def paginate_list(self, queryset, page_number, max_posts):
+        paginator = Paginator(queryset, max_posts)
+        return paginator.get_page(page_number)
+
+    def filter_by_slug(self, queryset_list, slug):
+        pass #placeholder -- define in query Class Views
+
+    def filter_by_query(self, queryset_list, query):
+        filtered_queryset = queryset_list.filter(
+                    Q(title__icontains=query) |
+                    Q(content__icontains=query) |
+                    Q(user__first_name__icontains=query) |
+                    Q(user__last_name__icontains=query) |
+                    Q(tags__name__in=[query])
+                    ).distinct()
+        return filtered_queryset
+
+    def get(self, request, slug=None):
+        
+        today = timezone.now().date()
+
+        if request.user.is_authenticated:
+            queryset_list = Post.objects.all()
+        else:
+            queryset_list = Post.objects.active()
+
+        if slug:
+            queryset_list = self.filter_by_slug(queryset_list, slug)
+        else:
+            query = request.GET.get("query")
+            if query:
+                queryset_list = self.filter_by_query(queryset_list, query)
+                self.update_title(queryset_list,"Search results for",query)
+
+        page_number = request.GET.get('page')
+        page_obj = self.paginate_list(queryset_list, page_number, 10)
+
+        context = {
+            "object_list" : page_obj,
+            "title" : self.title,
+            "today" : today
+        }
+        return render(request, "post_list.html", context)
+
+
+class PostTagView(PostListView):
+    title = "Filter By Tag: " 
+
+    def filter_by_slug(self, queryset_list, slug):
+        tag = get_object_or_404(Tag, slug=slug)
+        filtered_queryset = queryset_list.filter(tags=tag)
+        self.update_title(filtered_queryset,"Tag",tag)
+        return filtered_queryset
+
+
+class PostCategoryView(PostListView):
+    title = "Filter By Category: "
+
+    def filter_by_slug(self, queryset_list, slug):
+        category = get_object_or_404(Category, slug=slug)
+        filtered_queryset = queryset_list.filter(category=category)
+        self.update_title(filtered_queryset,"Category",category.name)
+        return filtered_queryset
 
 
 def post_detail(request, slug=None):
@@ -99,86 +156,35 @@ def post_detail(request, slug=None):
     return render(request, "post_detail.html", context)
 
 
-def post_home(request):
-    today = timezone.now().date()
-    queryset_list = Post.objects.active_img()[:3]
-    context = {
-        "object_list" : queryset_list,
-        "title" : "Post List",
-        "today" : today
+@login_required
+def post_create(request):
+    # if not request.user.is_staff or not request.user.is_superuser:
+    #     raise Http404
+    if not request.user.is_authenticated:
+        raise Http404
+    current_date = date.today()
+    initial_data = {
+        "publish": current_date
     }
-    return render(request, "home.html", context)
-
-
-class PostListView(View):
-    
-    title = "Post List"
-
-    def update_title(self, queryset, title_base, filter_name):
-        self.title = "%s: %s -- (%s results found)" % (title_base, filter_name, len(queryset))
-
-    def paginate_list(self, queryset, page_number, max_posts):
-        paginator = Paginator(queryset, max_posts)
-        return paginator.get_page(page_number)
-
-    def filter_by_slug(self, queryset_list, slug):
-        pass
-
-    def filter_by_query(self, queryset_list, query):
-        filtered_queryset = queryset_list.filter(
-                    Q(title__icontains=query) |
-                    Q(content__icontains=query) |
-                    Q(user__first_name__icontains=query) |
-                    Q(user__last_name__icontains=query) |
-                    Q(tags__name__in=[query])
-                    ).distinct()
-        return filtered_queryset
-
-    def get(self, request, slug=None):
-        
-        today = timezone.now().date()
-
-        if request.user.is_authenticated:
-            queryset_list = Post.objects.all()
-        else:
-            queryset_list = Post.objects.active()
-
-        if slug:
-            queryset_list = self.filter_by_slug(queryset_list, slug)
-        else:
-            query = request.GET.get("query")
-            if query:
-                queryset_list = self.filter_by_query(queryset_list, query)
-                self.update_title(queryset_list,"Search results for",query)
-
-        page_number = request.GET.get('page')
-        page_obj = self.paginate_list(queryset_list, page_number, 10)
-
-        context = {
-            "object_list" : page_obj,
-            "title" : self.title,
-            "today" : today
-        }
-        return render(request, "post_list.html", context)
-
-class PostTagView(PostListView):
-    title = "Filter By Tag: " 
-
-    def filter_by_slug(self, queryset_list, slug):
-        tag = get_object_or_404(Tag, slug=slug)
-        filtered_queryset = queryset_list.filter(tags=tag)
-        self.update_title(filtered_queryset,"Tag",tag)
-        return filtered_queryset
-
-class PostCategoryView(PostListView):
-    title = "Filter By Category: "
-
-    def filter_by_slug(self, queryset_list, slug):
-        category = get_object_or_404(Category, slug=slug)
-        filtered_queryset = queryset_list.filter(category=category)
-        self.update_title(filtered_queryset,"Category",category.name)
-        return filtered_queryset
-
+    form = PostForm(request.POST or None, request.FILES or None, initial=initial_data)
+    if form.is_valid() and request.user.is_authenticated:
+        instance = form.save(commit=False)
+        instance.user = request.user
+        instance.content = instance.content.strip()
+        try:
+            blog_img = request.FILES['file']
+        except:
+            blog_img = None
+        if blog_img:
+            instance.image = blog_img
+        instance.save()
+        form.save_m2m() # required to save tags
+        messages.success(request, "Successfully Created")
+        return HttpResponseRedirect(instance.get_absolute_url())
+    context = {
+        "form" : form,
+    }
+    return render(request, "post_form.html", context)
 
 
 @login_required
