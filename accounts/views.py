@@ -4,6 +4,7 @@ from django.contrib.auth import (
     login,
     logout
 )
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from .forms import UserLoginForm, UserRegisterForm
@@ -19,7 +20,7 @@ def login_view(request):
         password = form.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
         login(request, user)
-        # print(request.user.is_authenticated)
+        messages.success(request, "Welcome, %s, you are successfully logged in." % (username))
         if next: # if prompted to login, will redirect back to the intended page
             return redirect(next)
         return redirect("/")
@@ -41,6 +42,7 @@ def register_view(request):
         user.save()
         new_user = authenticate(username=user.username, password=password)
         login(request, new_user)
+        messages.success(request, "Your account is successfully registered. Welcome, %s." % (username))
         if next:
             return redirect(next)
         return redirect("/")
@@ -54,6 +56,7 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
+    messages.success(request, "You are now logged out.")
     return redirect("/")
 
 

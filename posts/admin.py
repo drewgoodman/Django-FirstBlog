@@ -36,12 +36,18 @@ class PostModelAdmin(admin.ModelAdmin):
         ) % updated, messages.SUCCESS)
     make_draft.short_description = "Mark as Draft"
 
+class PostInline(admin.StackedInline):
+    model = Post
 
 class CategoryModelAdmin(admin.ModelAdmin):
     list_display = ["name"]
+    inlines = [
+        PostInline,
+    ]
 
     class Meta:
         model = Category
+
 
 class ArchiveModelAdmin(admin.ModelAdmin):
 
