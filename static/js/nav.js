@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
 
+
     $(".search-bar-form").on("submit", function (event) {
         event.preventDefault();
         var search_query = $(this).find(".search-bar-query").val();
