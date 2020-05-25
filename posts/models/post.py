@@ -121,21 +121,17 @@ def set_archives():
     posts = Post.objects.active().annotate(publish_month=ExtractMonth('publish')).annotate(publish_year=ExtractYear('publish'))
     for archive in archives:
         archive.count = 0
+        archive.save()
     for post in posts:
         if post.publish:
             archive_year = post.publish_year
             archive_month = post.publish_month
-            # print("Now trying article: " + post.title + " from " + str(archive_month) + "/" + str(archive_year))
             archive_date = datetime.date(archive_year, archive_month, 1)
-            try:
-                existing_archive = Archive.objects.get(date=archive_date)
-                # print("Found an archive!")
-                existing_archive.count += 1
-                existing_archive.save()
-            except:
-                # print("No archive, make a new one!")
-                new_archive = Archive(date=datetime.date(archive_year, archive_month, 1), count=1)
-                new_archive.save()
+            archive_obj, created = Archive.objects.update_or_create(
+                date=datetime.date(archive_year, archive_month, 1)
+                )
+            archive_obj.count += 1
+            archive_obj.save()
 
 
 def pre_save_post_receiver(sender, instance, *args, **kwargs):

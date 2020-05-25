@@ -44,6 +44,8 @@ class CategoryModelAdmin(admin.ModelAdmin):
         model = Category
 
 class ArchiveModelAdmin(admin.ModelAdmin):
+
+    list_display = ["date","count"]
     class Meta:
         model = Archive
 
