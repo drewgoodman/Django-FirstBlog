@@ -54,7 +54,7 @@
     <div class="panel-body">
         <div class="row container-fluid">
             {% for archive in archives %}
-            <div class="list-group-item">{{ archive.date.month|month_name }} {{ archive.date.year }} ({{ archive.count}} posts)</div>
+            <div class="list-group-item"><a href="{% url 'posts:archive_view' slug_year=archive.date.year slug=archive.date.month %}">{{ archive.date.month|month_name }} {{ archive.date.year }} ({{ archive.count}} posts)</a></div>
             {% endfor %}
         </div>
     </div>

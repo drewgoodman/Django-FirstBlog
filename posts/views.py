@@ -1,3 +1,5 @@
+import calendar
+
 from datetime import date
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -61,7 +63,7 @@ class PostListView(View):
                     ).distinct()
         return filtered_queryset
 
-    def get(self, request, slug=None):
+    def get(self, request, slug=None, slug_year=None):
         
         today = timezone.now().date()
 
@@ -71,7 +73,7 @@ class PostListView(View):
             queryset_list = Post.objects.active()
 
         if slug:
-            queryset_list = self.filter_by_slug(queryset_list, slug)
+            queryset_list = self.filter_by_slug(queryset_list, slug, slug_year)
         else:
             query = request.GET.get("query")
             if query:
@@ -92,7 +94,7 @@ class PostListView(View):
 class PostTagView(PostListView):
     title = "Filter By Tag: " 
 
-    def filter_by_slug(self, queryset_list, slug):
+    def filter_by_slug(self, queryset_list, slug, *args, **kwargs):
         tag = get_object_or_404(Tag, slug=slug)
         filtered_queryset = queryset_list.filter(tags=tag)
         self.update_title(filtered_queryset,"Tag",tag)
@@ -102,10 +104,23 @@ class PostTagView(PostListView):
 class PostCategoryView(PostListView):
     title = "Filter By Category: "
 
-    def filter_by_slug(self, queryset_list, slug):
+    def filter_by_slug(self, queryset_list, slug, *args, **kwargs):
         category = get_object_or_404(Category, slug=slug)
         filtered_queryset = queryset_list.filter(category=category)
         self.update_title(filtered_queryset,"Category",category.name)
+        return filtered_queryset
+
+
+class PostArchiveView(PostListView):
+    title = "Articles from "
+
+    def filter_by_slug(self, queryset_list, slug, slug_year, *args, **kwargs):
+        year = int(slug_year)
+        month = int(slug)
+        archive_date = date(year, month, 1)
+        archive = get_object_or_404(Archive, date=archive_date)
+        filtered_queryset = queryset_list.filter(archive=archive)
+        self.title = "Articles from " + calendar.month_name[month] + " " + str(year)
         return filtered_queryset
 
 
