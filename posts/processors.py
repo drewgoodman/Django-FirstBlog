@@ -1,6 +1,6 @@
 from django.template import RequestContext, Template
 
-from .models import Category, Post
+from .models import Archive, Category, Post
 
 def sidebar_context(request):
 
@@ -9,9 +9,11 @@ def sidebar_context(request):
     recent_posts = qs_posts[:4]
 
     categories = Category.objects.all()
+    archives = Archive.objects.with_posts()
 
     return {
         'recent_posts': recent_posts,
         'tag_links': tag_links,
-        'categories': categories
+        'archives': archives,
+        'categories': categories,
         }

@@ -3,8 +3,7 @@ import datetime
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models.functions import ExtractMonth, ExtractYear
-from django.db.models.signals import pre_save
+from django.db.models.signals import post_save
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
@@ -118,14 +117,14 @@ def create_slug(instance, new_slug=None):
 
 def set_archives():
     archives = Archive.objects.all()
-    posts = Post.objects.active().annotate(publish_month=ExtractMonth('publish')).annotate(publish_year=ExtractYear('publish'))
+    posts = Post.objects.active()
     for archive in archives:
         archive.count = 0
         archive.save()
     for post in posts:
         if post.publish:
-            archive_year = post.publish_year
-            archive_month = post.publish_month
+            archive_year = post.publish.year
+            archive_month = post.publish.month
             archive_date = datetime.date(archive_year, archive_month, 1)
             archive_obj, created = Archive.objects.update_or_create(
                 date=datetime.date(archive_year, archive_month, 1)
@@ -134,7 +133,7 @@ def set_archives():
             archive_obj.save()
 
 
-def pre_save_post_receiver(sender, instance, *args, **kwargs):
+def post_save_post_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = create_slug(instance)
 
@@ -143,7 +142,6 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
         read_time = get_read_time(html_string)
         instance.read_time = read_time
     
-    # print(ExtractMonth('instance.publish'))
     set_archives()
 
-pre_save.connect(pre_save_post_receiver, sender=Post)
+post_save.connect(post_save_post_receiver, sender=Post)
