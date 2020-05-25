@@ -3,7 +3,7 @@ import datetime
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
@@ -114,7 +114,7 @@ def create_slug(instance, new_slug=None):
         return create_slug(instance, new_slug=new_slug)
     return slug
 
-
+# reorganize all archive index counts and create new archives as needed
 def set_archives():
     archives = Archive.objects.all()
     posts = Post.objects.active()
@@ -132,16 +132,20 @@ def set_archives():
             archive_obj.count += 1
             archive_obj.save()
 
-
-def post_save_post_receiver(sender, instance, *args, **kwargs):
+def pre_save_post_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = create_slug(instance)
 
+
+def post_save_post_receiver(sender, instance, *args, **kwargs):
     if instance.content:
         html_string = instance.get_markdown()
         read_time = get_read_time(html_string)
         instance.read_time = read_time
-    
-    set_archives()
 
+    if instance.publish:
+        set_archives()
+        
+
+pre_save.connect(pre_save_post_receiver, sender=Post)
 post_save.connect(post_save_post_receiver, sender=Post)

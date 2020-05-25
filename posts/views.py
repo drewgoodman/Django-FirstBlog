@@ -16,7 +16,7 @@ from comments.models import Comment
 from taggit.models import Tag
 
 from .forms import PostForm
-from .models import Post, Category
+from .models import Archive, Category, Post
 from .utils import get_read_time
 
 
@@ -177,6 +177,11 @@ def post_create(request):
             blog_img = None
         if blog_img:
             instance.image = blog_img
+        if instance.publish:
+            archive_obj, created = Archive.objects.get_or_create(
+                date=date(instance.publish.year, instance.publish.month, 1)
+                )
+            instance.archive = archive_obj
         instance.save()
         form.save_m2m() # required to save tags
         messages.success(request, "Successfully Created")
@@ -201,6 +206,11 @@ def post_update(request, slug=None):
             blog_img = None
         if blog_img:
             instance.image = blog_img
+        if instance.publish:
+            archive_obj, created = Archive.objects.get_or_create(
+                date=date(instance.publish.year, instance.publish.month, 1)
+                )
+            instance.archive = archive_obj
         instance.save()
         form.save_m2m() # required to save tags
         messages.success(request, "<a href='#'>Item</a> Saved", extra_tags="html_safe")
