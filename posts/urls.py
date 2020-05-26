@@ -13,8 +13,8 @@ urlpatterns = [
     path('posts/tag/<slug>/', views.PostTagView.as_view(), name="tag_view"),
     path('create/', views.post_create, name="create"),
     path('posts/<slug>/', views.post_detail, name="detail"),
-    path('posts/<slug:slug>/edit/', views.post_update, name="update"),
-    path('posts/<slug:slug>/delete/', views.post_delete),
+    path('posts/<slug:slug>/edit/', views.post_update, name="post_update"),
+    path('posts/<slug:slug>/delete/', views.post_delete, name="post_delete"),
     path('posts/archive/<slug:slug_year>/<slug:slug>/', views.PostArchiveView.as_view(), name="archive_view"),
 
 ]

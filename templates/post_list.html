@@ -26,7 +26,13 @@
                     {% if obj.comments %}{{ obj.comment_count }} comments
                     {% endif %}
                     <div class="post-detail-item">{{ obj.get_markdown|truncatechars_html:120 }}</div>
-                    <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+                    <p>
+                        <a href="{{ obj.get_absolute_url }}" class="btn btn-info" role="button">View</a>
+                        {% if request.user == obj.user%}
+                            <a href="{% url 'posts:post_update' obj.slug %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'posts:post_delete' obj.slug %}" class="btn btn-danger">Delete</a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>

@@ -50,8 +50,12 @@ INSTALLED_APPS = [
     'posts',
 ]
 
+# TAGGIT MODEL SETTINGS
 TAGGIT_CASE_INSENSITIVE = True
+
+# CRISPY TEMPLATE SETTINGS
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
