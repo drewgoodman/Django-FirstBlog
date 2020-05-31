@@ -1,0 +1,20 @@
+{% extends "__base.html" %}
+{% load urlify %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
+
+{% block content %}
+
+<h1>{{ user }}'s Comment History</h1>
+<div class="col-sm-6 col-sm-offset-3">
+    {% for comment in comments %}
+        
+    <blockquote>
+        <p>{{ comment.content }}</p>
+        <footer>from {{ comment.user }} | {{ comment.timestamp|timesince}}{% if request.user == comment.user %} | <a href="{{ comment.get_delete_url }}">Delete</a>{% endif %}</footer>
+    </blockquote>
+    {% endfor %}
+
+</div>
+{% endblock content %}

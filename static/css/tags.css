@@ -2,6 +2,7 @@
 
 .post-tag a {
     float: left;
+    width: auto;
     height: 24px;
     line-height: 24px;
     position: relative;

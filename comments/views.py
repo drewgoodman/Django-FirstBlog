@@ -1,5 +1,6 @@
 
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect, Http404, HttpResponse
@@ -79,3 +80,14 @@ def comment_thread(request, id):
         "form": form,
     }
     return render(request, "comment_thread.html", context)
+
+
+def comment_history(request, id):
+    user = get_object_or_404(get_user_model(),id=id)
+    comments = Comment.objects.all().filter(user=user)
+    context = {
+        "title": "Comment History",
+        "user": user,
+        "comments": comments,
+    }
+    return render(request, "comment_history.html", context)
