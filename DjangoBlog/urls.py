@@ -33,7 +33,6 @@ urlpatterns = [
     path('register/', register_view, name="register"),
     path('logout/', logout_view, name="logout"),
     path('', include("posts.urls", namespace="posts")),
-    path('', include('pagedown.urls')),
     # path('posts/<int:post_id>', "<appname>.views.<function_name>"),
 
 ]
