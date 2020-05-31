@@ -1,9 +1,4 @@
 
-h1,h2,h3,h4,h5,h6 {
-    font-family: 'Raleway', sans-serif;
-}
-
-
 a {
     color: #424041;
 }
@@ -16,6 +11,11 @@ a:hover {
 
 body {
     overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Raleway', sans-serif;
 }
 
 .card-shadow {
@@ -34,10 +34,10 @@ body {
 }
 
 .hero-img {
-    height: 120px;
+    height: 100px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     border-radius: 5px;
     position: relative;
     -webkit-box-shadow: 3px 10px 16px 0px rgba(0,0,0,0.75);
@@ -183,7 +183,17 @@ body {
     box-shadow: 4px 10px 8px -1px rgba(34,32,33,1);
 }
 
+
 .list-group-item a {
+    color: #D5CFCF;
+    transition: 0.1s all ease-in-out !important;
+}
+
+.list-group-item a:hover {
+    color: #656E68;
+}
+
+.list-group-item a:focus {
     color: #fff;
 }
 
