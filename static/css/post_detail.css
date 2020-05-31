@@ -2,3 +2,26 @@
 .comment-reply {
     display: none;
 }
+
+.post-content__container {
+    color: white;
+    border: 1px solid #424041;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.3) !important;
+    /* backdrop-filter: blur(1px); */
+    padding: 10px;
+}
+
+.post-content__container:after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border: 1px solid #424041;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.3) !important;
+    z-index: -1;
+    
+}

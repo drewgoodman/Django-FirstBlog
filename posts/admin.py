@@ -7,9 +7,9 @@ from .models import Archive, Category, Post #relative import
 
 class PostModelAdmin(admin.ModelAdmin):
 
-    list_display = ["title", "publish", "category", "updated","draft"]
+    list_display = ["title", "publish", "category", "updated","draft","archive"]
     list_display_links = ["updated"] #change which field has a link to change the entry
-    list_editable = ["title","draft","category"]
+    list_editable = ["title","draft","category","archive"]
 
     list_filter = ["updated", "category", "publish","draft"] #create options to sort by these fields
     search_fields= ["title","content"] #allow for searching in these fields
