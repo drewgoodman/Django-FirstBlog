@@ -25,16 +25,20 @@
     </div>
 </div>
 
+<div class="panel-spacer"></div>
+
 <div class="panel panel-default card-shadow">
     <div class="panel-heading">
         Recent Articles
     </div>
-    <ul class="list-group">
+    <ul class="list-group panel-body">
         {% for post in recent_posts %}
         <li class="list-group-item"><a href="{{post.get_absolute_url}}">{{ post.title }}</a></li>
         {% endfor %}
     </ul>
 </div>
+
+<div class="panel-spacer"></div>
 
 <div class="panel panel-default card-shadow">
     <div class="panel-heading">Popular Tags</div>
@@ -48,6 +52,8 @@
         </div>
     </div>
 </div>
+
+<div class="panel-spacer"></div>
 
 <div class="panel panel-default card-shadow">
     <div class="panel-heading">Archives</div>

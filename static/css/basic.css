@@ -1,4 +1,19 @@
 
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Raleway', sans-serif;
+}
+
+
+a {
+    color: #424041;
+}
+
+a:hover {
+    color: #f0ece4;
+    text-decoration: none;
+}
+
+
 body {
     overflow-x: hidden;
 }
@@ -124,8 +139,12 @@ body {
     color: #656E68;
 }
 
+.panel-spacer {
+    height: 15px;
+}
+
 .panel {
-    background-color: rgba(0,0,0,0.2) !important;
+    background-color: rgba(0,0,0,0.3) !important;
     /* background-color: #8F7870; */
 }
 
@@ -141,6 +160,7 @@ body {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 1.3em;
+    font-family: 'Raleway', sans-serif;
     /* text-align: right; */
 }
 
@@ -149,13 +169,40 @@ body {
     border-radius: 4px;
     padding: 10px;
     backdrop-filter: blur(7px);
+    font-weight: 800;
 }
 
-a {
-    color: #424041;
+.list-group-item {
+    background-color: #333 !important;
+    border-color: #222021;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    margin-left: 10px;
+    -webkit-box-shadow: 4px 10px 8px -1px rgba(34,32,33,1);
+    -moz-box-shadow: 4px 10px 8px -1px rgba(34,32,33,1);
+    box-shadow: 4px 10px 8px -1px rgba(34,32,33,1);
 }
 
-a:hover {
-    color: #f0ece4;
-    text-decoration: none;
+.list-group-item a {
+    color: #fff;
+}
+
+.search-bar-query {
+    background-color: rgba(0,0,0,0.8);
+    border-color: black;
+    /* color: white; */
+}
+
+.search-bar-query textarea:focus, input:focus {
+    color: white;
+}
+
+.input-group-btn > .btn {
+    background-color: #424041 !important;
+    background-image: linear-gradient(to bottom,#424041 0,#000 100%);
+    border-color: black;
+}
+
+.input-group-btn > .btn i {
+    color: white;
 }
