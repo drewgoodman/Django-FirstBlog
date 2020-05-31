@@ -18,10 +18,12 @@ from posts.models import Archive, Category, Post
 def post_home(request):
     today = timezone.now().date()
     queryset_list = Post.objects.active_img()[:3]
+    pinned_qs = Post.objects.pinned()
     context = {
         "object_list" : queryset_list,
+        "pinned_posts": pinned_qs,
         "title" : "Post List",
-        "today" : today
+        "today" : today,
     }
     return render(request, "home.html", context)
 

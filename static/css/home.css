@@ -1,0 +1,5 @@
+.carousel-img {
+    object-fit: cover;
+    height: 350px !important;
+    width: 100% !important;
+}

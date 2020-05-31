@@ -15,7 +15,7 @@
     <div class="carousel-inner" role="listbox">
         {% for post in object_list %}
         <div class="{% if forloop.counter == 1%}item active{% else %}item{% endif %}">
-          <img src="{{ post.image.url }}" class="img-responsive" alt="{{post.title}}">
+          <img src="{{ post.image.url }}" class="img-responsive carousel-img" alt="{{post.title}}">
           <div class="carousel-caption">
             <h3>{{post.title}}</h3>
             <p>{{post.publish}}</p>
@@ -35,8 +35,12 @@
     </a>
   </div>
   <hr/>
-  <h1>Popular Tags</h1>
-
+  {% if pinned_posts %}
+  <h1>Popular Posts</h1>
+  {% for post in pinned_posts %}
+    {{post.title}}
+  {% endfor %}
+  {% endif %}
 
 
 {% endblock content %}

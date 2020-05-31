@@ -21,11 +21,13 @@ class PostForm(forms.ModelForm):
             "content",
             "category",
             "draft",
+            "pinned",
             "publish",
             "tags",
         )
         labels = {
             "title": _("Blog Title"),
+            "pinned": _("Pin on Homepage?"),
             "image": _("Cover Image"),
             "publish": _("Publishing Date"),
             "draft": _("Set as Draft")

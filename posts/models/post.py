@@ -25,6 +25,9 @@ class PostManager(models.Manager):
     #Post.objects.all() = super(postManager, self).all()
     def active(self, *args, **kwargs):
         return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
+
+    def pinned(self, *args, **kwargs):
+        return super(PostManager, self).filter(draft=False).filter(pinned=True).filter(publish__lte=timezone.now())
     
     def active_img(self, *args, **kwargs):
         return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now()).exclude(image="")
@@ -60,6 +63,7 @@ class Post(models.Model):
     read_time = models.IntegerField(default=0)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    pinned = models.BooleanField(default=False)
 
     objects = PostManager()
 
