@@ -1,7 +1,8 @@
 .thumbnail {
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.9);
     /* background: inherit; */
-    backdrop-filter: blur(7px);
+    /* backdrop-filter: blur(7px); */
+    /* background-color: #222021; */
     border: none;
 }
 

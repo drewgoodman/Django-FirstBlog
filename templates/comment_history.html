@@ -6,15 +6,20 @@
 
 {% block content %}
 
-<h1>{{ user }}'s Comment History</h1>
-<div class="col-sm-6 col-sm-offset-3">
-    {% for comment in comments %}
-        
-    <blockquote>
-        <p>{{ comment.content }}</p>
-        <footer>from {{ comment.user }} | {{ comment.timestamp|timesince}}{% if request.user == comment.user %} | <a href="{{ comment.get_delete_url }}">Delete</a>{% endif %}</footer>
-    </blockquote>
-    {% endfor %}
+<div class="">
 
+    <h1>{{ user }}'s Comment History</h1>
+    <hr />
+    <div class="col-sm-8 col-sm-offset-1 post-content__container card-shadow">
+        {% for comment in comments %}
+            
+        <blockquote>
+            <p>{{ comment.content }}</p>
+            <footer>from {{ comment.user }} | {{ comment.timestamp|timesince}}{% if request.user == comment.user %} | <a href="{{ comment.get_delete_url }}">Delete</a>{% endif %}</footer>
+        </blockquote>
+        {% endfor %}
+    
+    </div>
 </div>
+
 {% endblock content %}

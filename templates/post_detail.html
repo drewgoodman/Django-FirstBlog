@@ -31,9 +31,8 @@
         <div class="col-sm-12">
             <div class="post-detail-item post-content__container card-shadow">{{ instance.get_markdown }}
             </div>
-            <hr />
 
-            <p class="lead" id="comments">Comments</p>
+            <p class="lead card-shadow" id="comments">Comments</p>
             {% if request.user.is_authenticated %}
             <form method="POST" action="."> {% csrf_token %}
                 {{ comment_form|crispy }}
@@ -43,7 +42,6 @@
             <p>You must login to comment.</p>
             <a href="{% url 'login' %}?next={{instance.get_absolute_url}}#comments">Click to login</a>
             {% endif %}
-            <hr />
             {% for comment in comments %}
             <blockquote>
                 <p>{{ comment.content }}</p>
@@ -69,7 +67,6 @@
                     {% endif %}
                 </div>
             </blockquote>
-            <hr />
             {% endfor %}
         </div>
     </div>
