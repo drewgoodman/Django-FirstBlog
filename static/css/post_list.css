@@ -15,3 +15,9 @@
 .pager li>a:hover {
     color: #373736;
 }
+
+.img-post {
+    object-fit: cover;
+    width: 100% !important;
+    /* height: 400px !important; */
+}
