@@ -8,20 +8,31 @@
 
 
 {% block content %}
-<div class="col-sm-6">
+<div class="col-sm-6 panel panel-default card-shadow">
+    <div class="panel-heading">
+        
     <h1>Preview</h1>
-    <div class="content-preview">
-        <h3 id="preview-title"></h3>
-        <p id="preview-content"></p>
+    </div>
+    <div class="panel-body">
+        <div class="content-preview form-editor-pane">
+            <h3 id="preview-title"></h3>
+            <p id="preview-content"></p>
+        </div>
+
     </div>
 </div>
-<div class="col-sm-6">
+<div class="col-sm-6 panel panel-default card-shadow">
+    <div class="panel-heading">
     <h1>Form</h1>
-    <hr>
-    <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+
+    </div>
+    <div class="panel-body">
+    <form class="form-editor-pane" method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
         {{ form|crispy }}
         <input type="submit" class="btn btn-default" value="Create Post">
     </form>
+
+    </div>
 </div>
 {% endblock content %}
 

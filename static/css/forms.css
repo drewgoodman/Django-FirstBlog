@@ -37,3 +37,9 @@
 .bootstrap-tagsinput {
     width: 100%;
 }
+
+.form-editor-pane {
+    background-color: #cfcfcf;
+    padding: 15px;
+    border-radius: 10px;
+}

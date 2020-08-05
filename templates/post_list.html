@@ -11,34 +11,42 @@
     <div class="row">
         {% for obj in object_list %}
         <div class="col-sm-12">
-            <div class="thumbnail card-shadow" data-aos="fade-right">
-                {% if obj.image %}
-                <img src="{{ obj.image.url }}" class="img-responsive img-post"/>
-                {% endif %}
-                <div class="caption">
-                    {% if obj.draft %}<h3>Staff only: Draft</h3>{% endif %}
-                    {% if obj.publish > today %}<h3>Staff only: Future Post</h3>{% endif %}
-                    <h3><a href="{{obj.get_absolute_url}}">{{ obj.title }}
-                            <small>{{ obj.publish|timesince }}</small></a></h3>
-                    {% if obj.user.get_full_name %}
-                    <p>Author: {{ obj.user.get_full_name }}</p>
-                    {% endif %}
-                    {% if obj.comments %}{{ obj.comment_count }} comments
-                    {% endif %}
-                    <div class="post-detail-item">{{ obj.get_markdown|truncatechars_html:120 }}</div>
-                    <p>
-                        <a href="{{ obj.get_absolute_url }}" class="btn btn-info" role="button">View</a>
-                        {% if request.user == obj.user%}
-                            <a href="{% url 'posts:post_update' obj.slug %}" class="btn btn-primary">Edit</a>
-                            <a href="{% url 'posts:post_delete' obj.slug %}" class="btn btn-danger">Delete</a>
+
+                <div class="panel panel-default card-shadow post-card" data-aos="fade-right">
+                    <div class="panel-heading">
+                        <a href="{{obj.get_absolute_url}}">{{ obj.title }}
+                    </div>
+                    <div class="panel-body">
+                        {% if obj.image %}
+                        <a href="{{obj.get_absolute_url}}">
+                        <img src="{{ obj.image.url }}" class="img-responsive img-post img-thumbnail" /></a>
                         {% endif %}
-                    </p>
+                        <div class="caption">
+                            {% if obj.draft %}<h3>Staff only: Draft</h3>{% endif %}
+                            <h3>
+                                <small>Posted {{ obj.publish|timesince }} ago</small></a></h3>
+                            {% if obj.publish > today %}<h3>Staff only: Future Post</h3>{% endif %}
+                            {% if obj.user.get_full_name %}
+                            <p>Author: {{ obj.user.get_full_name }}</p>
+                            {% endif %}
+                            {% if obj.comments %}{{ obj.comment_count }} comments
+                            {% endif %}
+                            <div class="post-detail-item">{{ obj.get_markdown|truncatechars_html:120 }}</div>
+                            <p>
+                                <a href="{{ obj.get_absolute_url }}" class="btn btn-info" role="button">View</a>
+                                {% if request.user == obj.user%}
+                                <a href="{% url 'posts:post_update' obj.slug %}" class="btn btn-primary">Edit</a>
+                                <a href="{% url 'posts:post_delete' obj.slug %}" class="btn btn-danger">Delete</a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+            <!-- {% cycle "" "</div><div class='row'>" %} -->
+            {% endfor %}
         </div>
-        <!-- {% cycle "" "</div><div class='row'>" %} -->
-        {% endfor %}
+        {% include "_1_pagination.html" %}
     </div>
-    {% include "_1_pagination.html" %}
-</div>
-{% endblock content %}
+    {% endblock content %}
