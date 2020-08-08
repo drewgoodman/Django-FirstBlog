@@ -6,7 +6,9 @@
 
 {% block content %}
 <div class="col-sm">
-    <h1 class="page-heading card-shadow">{{ title }}</h1>
+    {% if title %}
+        <h1 class="page-heading card-shadow">{{ title }}</h1>
+    {% endif %}
     {% include "_1_pagination.html" %}
     <div class="row">
         {% for obj in object_list %}
@@ -14,7 +16,7 @@
 
                 <div class="panel panel-default card-shadow post-card" data-aos="fade-right">
                     <div class="panel-heading">
-                        <a href="{{obj.get_absolute_url}}">{{ obj.title }}
+                        <a class="post-list-title" href="{{obj.get_absolute_url}}">{{ obj.title }}
                     </div>
                     <div class="panel-body">
                         {% if obj.image %}

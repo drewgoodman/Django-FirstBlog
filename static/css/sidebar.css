@@ -1,6 +1,6 @@
 
 .panel {
-    background-color: rgba(0,0,0,0.3) !important;
+    background-color: rgba(255,255,255,0.4) !important;
     /* background-color: #8F7870; */
 }
 
@@ -53,10 +53,10 @@
     color: #fff;
 }
 
-.search-bar-query {
+/* .search-bar-query {
     background-color: rgba(0,0,0,0.8);
     border-color: black;
-    /* color: white; */
+    color: white;
 }
 
 .search-bar-query textarea:focus, input:focus {
@@ -71,4 +71,4 @@
 
 .input-group-btn > .btn i {
     color: white;
-}
+} */

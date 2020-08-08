@@ -43,3 +43,29 @@
     padding: 15px;
     border-radius: 10px;
 }
+
+.account-form-panel {
+    padding: 15px;
+    background-color: #424041;
+    border: 2px solid #333;
+    color: white;
+    border-radius: 10px;
+}
+
+.controls > input {
+    background-color: #222 !important;
+    border-color: #111;
+    color: white;
+}
+    /* color: white; */
+}
+
+.controls > textarea:focus, input:focus {
+    color: white;
+}
+
+.account-form-btn {
+    background-color: #424041 !important;
+    background-image: linear-gradient(to bottom,#424041 0,#000 100%);
+    border-color: black;
+}

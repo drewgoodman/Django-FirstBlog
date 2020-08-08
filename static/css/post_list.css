@@ -21,3 +21,8 @@
     width: 100% !important;
     /* height: 400px !important; */
 }
+
+.post-list-title {
+    color: #fff;
+    font-size: 1.6em;
+}
