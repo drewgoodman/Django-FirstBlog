@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
 from accounts.views import (
     login_view,
@@ -28,6 +28,7 @@ from accounts.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('comments/', include("comments.urls", namespace="comments")),
     path('login/', login_view, name="login"),
     path('register/', register_view, name="register"),
