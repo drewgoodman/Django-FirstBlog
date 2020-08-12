@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'pagedown.apps.PagedownConfig',
     'markdown_deux',
     'crispy_forms',
+
+    'maintenancemode',
     
     'allauth',
     'allauth.account',
@@ -74,6 +76,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'maintenancemode.middleware.MaintenanceModeMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -185,6 +188,14 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False
 }
+
+
+#setting for Maintenance Mode to 503 public viewing:
+
+MAINTENANCE_MODE = False
+
+# use maintenance command to set it:
+# heroku run python manage.py maintenance <on|off>
 
 #settings for Social Authentication
 
