@@ -25,11 +25,14 @@ from accounts.views import (
     logout_view)
 # from posts import views as post_view
 
+from django_email_verification import urls as mail_urls
+
 
 urlpatterns = [
     # path('admin/defender/', include('defender.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('email/', include(mail_urls)),
     path('comments/', include("comments.urls", namespace="comments")),
     path('login/', login_view, name="login"),
     path('register/', register_view, name="register"),

@@ -9,6 +9,8 @@ from django.shortcuts import render, redirect
 
 from .forms import UserLoginForm, UserRegisterForm
 
+from django_email_verification import sendConfirm
+
 # Create your views here.
 
 def login_view(request):
@@ -41,8 +43,9 @@ def register_view(request):
         user.set_password(password)
         user.save()
         new_user = authenticate(username=user.username, password=password)
-        login(request, new_user)
-        messages.success(request, "Your account is successfully registered. Welcome, %s." % (user.username))
+        # login(request, new_user)
+        sendConfirm(user)
+        messages.success(request, "Your account is successfully registered. Welcome, %s. Please check your email account for a verification request." % (user.username))
         if next:
             return redirect(next)
         return redirect("/")

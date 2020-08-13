@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'django_email_verification',
 
     # 'storages',
 
@@ -224,3 +225,17 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+# config settings for email verification
+
+EMAIL_ACTIVE_FIELD = 'is_active'
+EMAIL_SERVER = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_ADDRESS = os.environ.get('EMAIL_SENDER_ADDRESS')
+EMAIL_FROM_ADDRESS = os.environ.get('EMAIL_SENDER_ADDRESS')
+EMAIL_PASSWORD = os.environ.get('EMAIL_SENDER_PASSWORD')
+EMAIL_MAIL_SUBJECT = 'Confirm your email'
+EMAIL_MAIL_HTML = 'mail_body.html'
+EMAIL_MAIL_PLAIN = 'mail_body.txt'
+EMAIL_PAGE_TEMPLATE = 'confirm_template.html'
+EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000/'
