@@ -27,6 +27,7 @@ from accounts.views import (
 
 
 urlpatterns = [
+    # path('admin/defender/', include('defender.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('comments/', include("comments.urls", namespace="comments")),

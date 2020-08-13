@@ -16,11 +16,11 @@ def login_view(request):
     next = request.GET.get('next')
     form = UserLoginForm(request.POST or None)
     if form.is_valid():
-        username = form.cleaned_data.get("username")
+        email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
-        user = authenticate(username=username, password=password)
+        user = authenticate(email=email, password=password)
         login(request, user)
-        messages.success(request, "Welcome, %s, you are successfully logged in." % (username))
+        messages.success(request, "Welcome, %s, you are successfully logged in." % (user.email))
         if next: # if prompted to login, will redirect back to the intended page
             return redirect(next)
         return redirect("/")
@@ -42,7 +42,7 @@ def register_view(request):
         user.save()
         new_user = authenticate(username=user.username, password=password)
         login(request, new_user)
-        messages.success(request, "Your account is successfully registered. Welcome, %s." % (username))
+        messages.success(request, "Your account is successfully registered. Welcome, %s." % (user.username))
         if next:
             return redirect(next)
         return redirect("/")

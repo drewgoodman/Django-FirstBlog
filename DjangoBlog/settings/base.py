@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     #third party
+    # 'defender',
     'debug_toolbar',
     'taggit',
     'pagedown.apps.PagedownConfig',
@@ -72,10 +73,11 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'defender.middleware.FailedLoginMiddleware',
     'maintenancemode.middleware.MaintenanceModeMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -209,6 +211,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 2
 
 LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
