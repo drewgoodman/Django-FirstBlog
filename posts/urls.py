@@ -7,8 +7,9 @@ app_name = "posts"
 
 urlpatterns = [
     # path('<int:post_id>', views.post_home),
-    path('', views.post_home, name="home"),
-    path('posts/', views.PostListView.as_view(), name="list"),
+    # path('', views.post_home, name="home"),
+    # path('posts/', views.PostListView.as_view(), name="list"),
+    path('', views.PostListView.as_view(), name="home"),
     path('posts/category/<slug>/', views.PostCategoryView.as_view(), name="category_view"),
     path('posts/tag/<slug>/', views.PostTagView.as_view(), name="tag_view"),
     path('create/', views.post_create, name="create"),

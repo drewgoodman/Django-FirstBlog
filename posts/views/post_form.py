@@ -91,5 +91,5 @@ def post_delete(request, slug=None):
     instance = get_object_or_404(Post, slug=slug)
     instance.delete()
     messages.success(request, "Successfully Deleted Blog Entry")
-    return redirect("posts:list")
+    return redirect("posts:home")
 

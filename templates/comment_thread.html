@@ -5,7 +5,6 @@
 {% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
 
 {% block post_breadcrumb %}
-<li><a href="{% url 'posts:list' %}">Posts</a></li>
 <li><a href="{{ comment.content_object.get_absolute_url }}">{{ comment.content_object.title }}</a></li>
 <li><a href="{{ comment.get_absolute_url }}">Comment Thread</a></li>
 {% endblock %}
