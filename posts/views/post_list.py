@@ -38,7 +38,7 @@ class PostListView(View):
             results_str = "result"
         else:
             results_str = "results"
-        self.title = "%s: %s -- (%s %s)" % (title_base, filter_name, count, results_str)
+        self.title = "%s '%s' (%s %s)" % (title_base, filter_name, count, results_str)
 
     def paginate_list(self, queryset, page_number, max_posts):
         paginator = Paginator(queryset, max_posts)

@@ -79,6 +79,11 @@ class Post(models.Model):
         markdown_text = markdown(content)
         return mark_safe(markdown_text)
 
+    def admin_image(self):
+        return '<img src="%s"/>' % self.image
+
+    admin_image.allow_tags = True
+
     @property
     def comments(self):
         instance = self
