@@ -34,7 +34,7 @@
 
         <p class="lead card-shadow" id="comments">Comments</p>
         {% if request.user.is_authenticated %}
-        <form method="POST" action="."> {% csrf_token %}
+        <form method="POST" action="." class="comment-form"> {% csrf_token %}
             {{ comment_form|crispy }}
             <input type="submit" value="Post Comment" class="btn btn-default">
         </form>
@@ -45,7 +45,7 @@
         {% for comment in comments %}
         <blockquote>
             <p>{{ comment.content }}</p>
-            <footer>from {{ comment.user }} | {{ comment.timestamp|timesince}}{% if comment.children.count > 0 %} |
+            <footer>from {% if comment.user.first_name %}{{ comment.user.first_name }}{% else %}{{ comment.user|title }}{% endif %} | {{ comment.timestamp|timesince}}{% if comment.children.count > 0 %} |
                 {{ comment.children.count}} comment{% if comment.children.count > 1 %}s{% endif %}{% endif %} | <a
                     class="comment-reply-btn" href="#">Reply</a> | <a href="{{comment.get_absolute_url}}">Thread</a>
             </footer>
@@ -54,12 +54,12 @@
                 {% for child_comment in comment.children %}
                 <blockquote>
                     <p>{{ child_comment.content }}</p>
-                    <footer>from {{ child_comment.user }} | {{ child_comment.timestamp|timesince}}
+                    <footer>from {% if comment.user.first_name %}{{ comment.user.first_name }}{% else %}{{ comment.user|title }}{% endif %} | {{ child_comment.timestamp|timesince}}
                 </blockquote>
                 {% endfor %}
 
                 {% if request.user.is_authenticated %}
-                <form method="POST" action="."> {% csrf_token %}
+                <form method="POST" action="." class="comment-form"> {% csrf_token %}
                     {{ comment_form|crispy }}
                     <input type="hidden" name="parent_id" value='{{ comment.id }}'>
                     <input type="submit" value="Reply" class="btn btn-default">

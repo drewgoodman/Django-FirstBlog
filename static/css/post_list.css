@@ -30,3 +30,7 @@
 .panel-white {
     background-color: #fdfdfd;
 }
+
+.panel-padding {
+    padding: 10px;
+}

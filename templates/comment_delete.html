@@ -11,10 +11,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-6 col-sm-offset-3 panel-default card-shadow post-card panel-white panel-padding">
     <h1>Confirm Delete</h1>
         <p>{{ object.content }}</p>
-        <footer>from {{ object.user }} | {{ object.timestamp|timesince}}}</footer>
+        <footer>from {% if object.user.first_name %}{{ object.user.first_name }}{% else %}{{ object.user|title }}{% endif %} | {{ object.timestamp|timesince}}}</footer>
         <hr />
         <div>
             <form method="POST" action="."> {% csrf_token %}

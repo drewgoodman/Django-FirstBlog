@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 
 <nav class="navbar navbar-inverse">
     <div class="container">
@@ -50,8 +51,9 @@
 
             {% if not request.user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% provider_login_url 'google' %}">Login with Google</a></li>
+                <!-- <li><a href="{% url 'login' %}">Account Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li> -->
             </ul>
             {% else %}
             <ul class="nav navbar-nav navbar-right">

@@ -22,7 +22,8 @@ class UserLoginForm(forms.Form):
             if not user.check_password(password):
                 raise forms.ValidationError("Incorrect password.")
             if not user.is_active:
-                raise forms.ValidationError("This user is no longer active.")
+                raise forms.ValidationError("This user is not currently active. A new verification email has been sent.")
+                #TODO: add verification email script
         return super(UserLoginForm, self).clean(*args, **kwargs)
 
 # class UserLoginForm(forms.Form):

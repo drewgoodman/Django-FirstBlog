@@ -14,6 +14,8 @@ from django_email_verification import sendConfirm
 # Create your views here.
 
 def login_view(request):
+    #currently disabled in favor of social authentication
+    raise Http404
     title = "Login"
     next = request.GET.get('next')
     form = UserLoginForm(request.POST or None)
@@ -34,6 +36,8 @@ def login_view(request):
 
 
 def register_view(request):
+    #currently disabled in favor of social authentication
+    raise Http404
     title = "Register"
     next = request.GET.get('next')
     form = UserRegisterForm(request.POST or None)
