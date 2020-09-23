@@ -144,13 +144,16 @@ def set_archives():
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = create_slug(instance)
+        
+    if instance.content:
+        html_string = instance.get_markdown()
+        new_read_time = get_read_time(html_string)
+        instance.read_time = new_read_time
+        print(new_read_time)
+        print(instance.read_time)
 
 
 def post_save_post_receiver(sender, instance, *args, **kwargs):
-    if instance.content:
-        html_string = instance.get_markdown()
-        read_time = get_read_time(html_string)
-        instance.read_time = read_time
 
     if instance.publish:
         set_archives()

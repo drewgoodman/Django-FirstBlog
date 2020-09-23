@@ -1,6 +1,7 @@
 
 .panel {
     background-color: rgba(255,255,255,0.4) !important;
+    padding-bottom: 15px;
     /* background-color: #8F7870; */
 }
 
@@ -34,9 +35,9 @@
     margin-bottom: 20px;
     margin-right: 20px;
     margin-left: 10px;
-    -webkit-box-shadow: 4px 10px 8px -1px rgba(34,32,33,1);
-    -moz-box-shadow: 4px 10px 8px -1px rgba(34,32,33,1);
-    box-shadow: 4px 10px 8px -1px rgba(34,32,33,1);
+    -webkit-box-shadow: 4px 6px 8px -1px rgba(34,32,33,1);
+    -moz-box-shadow: 4px 6px 8px -1px rgba(34,32,33,1);
+    box-shadow: 4px 6px 8px -1px rgba(34,32,33,1);
 }
 
 
