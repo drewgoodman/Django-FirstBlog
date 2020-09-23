@@ -33,7 +33,13 @@
     <div class="col-sm-12">
         <div class="post-detail-item">{{ instance.get_markdown }}
         </div>
-
+        
+        {% for tag in instance.tag_list %}
+        <div class="post-tag">
+            <a href="{% url 'posts:tag_view' tag.slug %}">{{ tag|title }}</a>
+        </div>
+        {% endfor %}
+        <br/><hr />
         <div class="lead comments-header card-shadow" id="comments">Comments</div>
         {% if request.user.is_authenticated %}
         <form method="POST" action="." class="comment-form"> {% csrf_token %}

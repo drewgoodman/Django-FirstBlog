@@ -45,7 +45,7 @@
     <div class="panel-body">
         <div class="post-tag__container">
             {% for tag in tag_links %}
-            <div class="post-tag">
+            <div class="post-tag tag-shadow">
                 <a href="{% url 'posts:tag_view' tag.slug %}">{{ tag|title }}</a>
             </div>
             {% endfor %}

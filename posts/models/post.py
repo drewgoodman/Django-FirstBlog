@@ -82,6 +82,9 @@ class Post(models.Model):
     def admin_image(self):
         return '<img src="%s"/>' % self.image
 
+    def tag_list(self):
+        return self.tags.all()
+
     admin_image.allow_tags = True
 
     @property
@@ -144,7 +147,7 @@ def set_archives():
 def pre_save_post_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = create_slug(instance)
-        
+
     if instance.content:
         html_string = instance.get_markdown()
         new_read_time = get_read_time(html_string)
