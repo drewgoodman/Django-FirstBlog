@@ -72,6 +72,10 @@
             background-image: url("{% static 'img/hero.jpg' %}");
             background-size: cover;
         }
+
+        #preloader {
+            background-image: url("{% static 'img/preloader.gif' %}");
+        }
     </style>
 
     {% block head_extra %}
@@ -83,6 +87,7 @@
 
 
 <body>
+    <div id="preloader" style="backgroundImage:url(''../static/images/ui/preloader.gif");"></div>
     <!-- Facebook Comments script -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous"
@@ -144,6 +149,11 @@
         <script>
             AOS.init();
             let home_url = "{% url 'posts:home' %}";
+
+            $(window).ready(function() {
+                $('#preloader').fadeOut('slow');
+            });
+
         </script>
 
         <script

@@ -1,6 +1,7 @@
 {% extends "__base.html" %}
 {% load urlify %}
 {% load crispy_forms_tags %}
+{% load socialaccount %}
 
 {% block head_title %}{{ instance.title }} | {{ block.super }}{% endblock head_title %}
 
@@ -32,7 +33,7 @@
         <div class="post-detail-item">{{ instance.get_markdown }}
         </div>
 
-        <p class="lead card-shadow" id="comments">Comments</p>
+        <div class="lead comments-header card-shadow" id="comments">Comments</div>
         {% if request.user.is_authenticated %}
         <form method="POST" action="." class="comment-form"> {% csrf_token %}
             {{ comment_form|crispy }}
@@ -40,7 +41,7 @@
         </form>
         {% else %}
         <p>You must login to comment.</p>
-        <a href="{% url 'login' %}?next={{instance.get_absolute_url}}#comments">Click to login</a>
+        <a class="btn btn-primary" href="{% provider_login_url 'google' %}?next={{ request.path }}">Login with Google</a>
         {% endif %}
         {% for comment in comments %}
         <blockquote>

@@ -38,3 +38,11 @@ blockquote {
     height: 50px;
     resize: none;
 }
+
+.comments-header {
+    color: white;
+    background-color: #424041;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 2rem;
+}
