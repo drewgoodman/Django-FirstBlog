@@ -3,7 +3,6 @@
 
 <nav class="navbar navbar-inverse">
     <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                 data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -12,30 +11,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!-- <a href="{% url 'posts:home' %}">
-                <div class="navbar-brand">
-                    <img src="{% static 'img/icon.png' %}" width="20" height="20" alt="brand image"/>
-                </div>
-                <div class="navbar-brand brand-font">The Good Blog</div>
-            </a> -->
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'posts:home' %}">All Posts</a></li>
                 {% for category in categories %}
                     <li><a href="{% url 'posts:category_view' category.slug %}">{{ category.name|title }}</a></li>
                 {% endfor %}
-                <!-- <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                        aria-expanded="false">By Category<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        {% for category in categories %}
-                        <li><a href="{% url 'posts:category_view' category.slug %}">{{ category.name|title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li> -->
             </ul>
 
             <form method="GET" action="" class="search-bar-form navbar-form navbar-left visible-xs-inline-block">
@@ -52,8 +34,6 @@
             {% if not request.user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% provider_login_url 'google' %}?next={{ request.path }}">Login with Google</a></li>
-                <!-- <li><a href="{% url 'login' %}">Account Login</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li> -->
             </ul>
             {% else %}
             <ul class="nav navbar-nav navbar-right">
@@ -62,8 +42,6 @@
                         aria-expanded="false">My Account<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'posts:create' %}">Create Post</a></li>
-                        <!-- <li><a href="#">View Profile</a></li> -->
-                        <!-- <li><a href="{% url 'comments:comment_history' request.user.id %}">View Comment History</a></li> -->
                         <li role="separator" class="divider"></li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     </ul>
