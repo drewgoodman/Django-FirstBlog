@@ -32,7 +32,7 @@
                             {% endif %}
                             <div class="post-detail-item">{{ obj.get_markdown|truncatechars_html:120 }}</div>
                             {% for tag in obj.tag_list %}
-                            <div class="post-tag">
+                            <div class="label label-primary tag-label">
                                 <a href="{% url 'posts:tag_view' tag.slug %}">{{ tag|title }}</a>
                             </div>
                             {% endfor %}

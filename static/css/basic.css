@@ -41,6 +41,22 @@ h1,h2,h3,h4,h5,h6 {
     box-shadow: 3px 3px 12px -3px rgba(0,0,0,0.75);
 }
 
+.tag-label {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    font-size: 1.4rem!important;
+    font-weight: 400;
+}
+
+.tag-label a {
+    color: #fff;
+}
+
+.tag-label a:hover {
+    color: #D5CFCF;
+}
+
 .img-cover {
     background-size: cover;
     -o-background-size:cover; 
