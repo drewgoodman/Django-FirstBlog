@@ -36,12 +36,12 @@
                                 <a href="{% url 'posts:tag_view' tag.slug %}">{{ tag|title }}</a>
                             </div>
                             {% endfor %}
-                            <br/><hr/>
+                            <hr/>
                             <p>
-                                <a href="{{ obj.get_absolute_url }}" class="btn btn-info" role="button">View</a>
+                                <a href="{{ obj.get_absolute_url }}" class="btn btn-info" role="button">Read More</a>
                                 {% if request.user == obj.user%}
-                                <a href="{% url 'posts:post_update' obj.slug %}" class="btn btn-primary">Edit</a>
-                                <a href="{% url 'posts:post_delete' obj.slug %}" class="btn btn-danger">Delete</a>
+                                <a href="{% url 'posts:post_update' obj.slug %}" class="btn btn-primary">Edit Post</a>
+                                <a href="{% url 'posts:post_delete' obj.slug %}" class="btn btn-danger">Delete Post</a>
                                 {% endif %}
                             </p>
                         </div>
